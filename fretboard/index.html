@@ -29,6 +29,47 @@
 </body>
     <script type="text/javascript">
 
+
+        
+        function onHashChange() {
+            // console.log('Hash changed to: ' + window.location.hash);
+
+            if(window.location.hash.length > 1) {
+
+              let paramList = window.location.hash.substring(1);
+
+              let args = getArgs(paramList);
+
+              // console.log(args);
+              clearNotes();
+
+              if(args.pattern)
+                loadPatterns(args);
+              else
+                loadNotes(args);
+            }
+        }
+
+
+        function getArgs(urlParams) {
+            let args = {};
+
+            if(urlParams.length > 1) {
+
+              let paramList = urlParams.split('&');
+
+              paramList.forEach( (p) => {
+                  let _arg = p.split('=');
+                  let arg = _arg[0].toLowerCase();
+                  let val = _arg[1] || true;
+                  args[arg] = val;
+              } );
+            }
+
+          return args;
+        }
+
+
         function onLoad() {
 
             let params = document.location.href.split('?');
@@ -60,6 +101,15 @@
               loadPatterns(args);
             else
               loadNotes(args);
+
+
+
+            if(window.location.hash.length > 1) {
+              onHashChange();
+            }
+
+            window.addEventListener('hashchange', onHashChange);
+
         }
 
         onLoad();
