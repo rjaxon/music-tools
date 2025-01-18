@@ -43,10 +43,16 @@
               // console.log(args);
               clearNotes();
 
-              if(args.pattern)
+              if(args.pattern) {
+                clear('fretboard-header');
+                clear('fretboard');
                 loadPatterns(args);
-              else
-                loadNotes(args);
+              }
+              else {
+                clear('fretboard-header');
+                clear('fretboard');
+                loadNotes(args); 
+              }
             }
         }
 
