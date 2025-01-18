@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js"></script-->
+        <link rel="stylesheet" href="../fretboard/style.css">
+        <script src="../fretboard/fretboard.js"></script>
+    </head>
+
+
+<style>
+
+  body {
+    margin: 0px;
+  }
+
+</style>
+
+
+<my-notes-fretboard ></my-notes-fretboard>
+
+<body>
+
+    <div>
+        <div id="fretboard-header" style="position: relative;height: 10px; width: 942px;"> </div>
+        <div id="fretboard" style="position: relative; padding-top: 3em;">
+
+        </div>
+    </div>
+
+</body>
+    <script type="text/javascript">
+
+        function onLoad() {
+
+            let params = document.location.href.split('?');
+            let args = null;
+            args = {};
+
+            if(params.length > 1) {
+
+              let paramList = params[1].split('&');
+
+              paramList.forEach( (p) => {
+                  let _arg = p.split('=');
+                  let arg = _arg[0].toLowerCase();
+                  let val = _arg[1] || true;
+                  args[arg] = val;
+              } );
+            }
+
+            console.log(args);
+
+            // if(args.noload)
+            //   return;
+
+
+            init();
+            clearNotes();
+
+            if(args.pattern)
+              loadPatterns(args);
+            else
+              loadNotes(args);
+        }
+
+        onLoad();
+
+    </script>
+
+</html>
