@@ -59,9 +59,12 @@
                       if (valid_notes.indexOf(interval) < 0) {
                           continue;
                       }
-      
+     
+                        let capitalizeFirstLetter = function (string) {
+                            return string.charAt(0).toUpperCase() + string.slice(1);
+                        }
                       let options = {
-                        img_url: `../svg/${note_plain}-color.svg`,
+                        img_url: `../svg/${capitalizeFirstLetter(note_plain)}-color.svg`,
                         container_class: 'reduce90'
                       };
 
