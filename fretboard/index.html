@@ -60,10 +60,6 @@
                           continue;
                       }
       
-      
-                      // console.log(s + ' ' + fret + ' ' + n );
-
-      
                       let options = {
                         img_url: `../svg/${note_plain}-color.svg`,
                         container_class: 'reduce90'
@@ -79,10 +75,10 @@
                       };
 
                       let lefts = [
-                          19, 98, 162, 225,
-                          292, 361, 424, 487,
-                          553, 620, 687, 751,
-                          819, 887, 948, 1015
+                          19, 98, 162, 230,
+                          295, 361, 429, 495,
+                          558, 625, 693, 756,
+                          824, 893, 955, 1022
                       ];
                       options.tops = tops;
                       options.lefts = lefts;
@@ -104,7 +100,7 @@
 
               let args = getArgs(paramList);
 
-              console.log(args);
+              // console.log(args);
               clearNotes();
 
               if(args.names) {

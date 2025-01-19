@@ -1,0 +1,287 @@
+
+body {
+    font-weight: 2em;
+}
+
+div {
+    padding: 1em;
+}
+
+#notes {
+
+/* relative necessary because child .note
+   use absolute positioning */
+    position: relative;
+    padding: 0em;
+    width: 946px;
+    height: 478px;
+
+    background-image: url('./NOTES-Cmaj-2-clear.png');
+    background-repeat: no-repeat;
+}
+
+.note {
+    padding: 0em;
+    width: 40px;
+    height: 60px;
+    position: absolute;
+    background-image: url('./NOTES-Cmaj-2.png');
+    background-repeat: no-repeat;
+}
+
+.note-none {
+    background-position: -152px -109px;
+}
+
+.flat {
+    padding: 0em;
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    background-image: url('./NOTES-Cmaj-2.png');
+    background-repeat: no-repeat;
+    background-position: -27px -490px;
+}
+
+.sharp {
+    padding: 0em;
+    width: 15px;
+    height: 20px;
+    position: absolute;
+    background-image: url('./NOTES-Cmaj-2.png');
+    background-repeat: no-repeat;
+    background-position: -5px -490px;
+}
+
+.natural {
+    padding: 0em;
+    width: 15px;
+    height: 20px;
+    position: relative;
+    background-image: url('./NOTES-Cmaj-2.png');
+    background-repeat: no-repeat;
+    background-position: -47px -490px;
+}
+
+
+.board {
+    padding: 0em;
+    width: 1000px;
+    height: 588px;
+    background-image: url('./caged-Cmaj-amin.png');
+    background-repeat: repeat;
+}
+
+.board-top {
+    height: 60px;
+}
+
+.board-main{
+    height: 371px;
+    width: 1074px;
+    background-position: 0px -70px;
+}
+
+.board-bottom{
+    height: 94px;
+    background-position: 0px 0px;
+    background-image: url('./scales-major.png');
+    background-repeat: repeat;
+    width: 915px;
+}
+
+.set-c {
+    background-position: 0px -70px;
+}
+
+.set-g {
+    background-position: -332px -70px;
+}
+
+.set-d {
+    background-position: -664px -70px;
+}
+
+.set-a {
+    background-position: -198px -70px;
+}
+
+.set-e {
+    background-position: 269px -70px;
+}
+
+.set-b {
+    background-position: -65px -70px;
+}
+
+.set-f {
+    background-position: -465px -70px;
+}
+
+.set-bf {
+    background-position: -133px -70px;
+}
+
+.set-ef {
+    background-position: 202px -70px;
+}
+
+
+.set-af {
+    background-position: -265px -70px;
+}
+
+
+.set-df {
+    background-position: -733px -70px;
+}
+
+.set-gf {
+    background-position: -397px -70px;
+}
+
+.buttons {
+    div {
+        cursor: pointer;
+        background: orange;
+        display: inline-block;
+        margin: .25em;
+        width: 5em;
+        height: 5em;
+        max-width: 5em;
+        max-height: 5em;
+        border-radius: 10px;
+        font-weight: bold;
+        text-align: center;
+
+    }
+
+    div.disabled {
+      cursor: default;
+      background: #CCC;
+    }
+
+    div.empty {
+      cursor: default;
+      background: white;
+        width: 5em;
+    }
+}
+
+.no-flats {
+    background-image: url('./caged-no-flats.png');
+}
+
+.pentatonic {
+    background-image: url('./caged-pentatonic.png');
+}
+
+.triads {
+    background-image: url('./triads.png');
+}
+
+.minor {
+    background-image: url('./minor.png');
+}
+
+.hidden {
+  display: none;
+}
+
+.minor.pentatonic {
+    background-position-y: -498px;
+}
+
+.minor.triads {
+    background-position-y: -911px;
+}
+
+.on {
+    background: #f4e519 !important;
+}
+
+.selected {
+    background: #f4e519 !important;
+}
+
+.selected-as-minor {
+    background: #75cf3f !important;
+}
+
+.red {
+    color: red;
+}
+
+.penta-omit {
+    color: #ccc;
+}
+
+
+.test-fretboard {
+    position: relative;
+    padding: 0px;
+    width: 1062px;
+    height: 371px;
+    background-image: url(./fretboard-empty.png);
+    background-position: 0px -75px;
+}
+
+.test-fretboard-top {
+  position: relative;
+  width: 1062px;
+  height: 30px;
+  padding: 0px;
+}
+
+.test-note {
+  position: absolute;
+  width: 55px;
+
+}
+
+.test-circle {
+      display: inline;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    background: white;
+    padding: 0px;
+    border: 1px solid white;
+    border-radius: 15px;
+}
+
+.test-container {
+  padding: 0px;
+  position: absolute;
+  width: 55px;
+  height: 55px;
+
+  div.test-circle {
+    left: 10px;
+    top: 9px;
+  }
+
+  img.test-note {
+    left: 0px;
+    top: 0px;
+  }
+
+  span {
+    svg {
+      width: 55px;
+    }
+  }
+}
+
+.test-container.minor {
+  width: 50px;
+  height: 50px;
+
+  span {
+    svg {
+      width: 50px;
+    }
+  }
+}
+
+

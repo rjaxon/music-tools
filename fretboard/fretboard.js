@@ -260,10 +260,12 @@ function addPatternItem(interval, s, fret, fretboard, render_options) {
     }
 
     let img_url = `../svg/number${interval}${color}.svg`;
-    if(render_options) 
-      img.src = render_options.img_url || img_url;
-    else
-      img.src = img_url;
+    // if(render_options) 
+    //   img.src = render_options.img_url || img_url;
+    // else
+    //   img.src = img_url;
+
+    img.src = render_options?.img_url || img_url;
 
     span.appendChild(img);
     fretboard.appendChild(span);
