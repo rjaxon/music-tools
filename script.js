@@ -389,7 +389,7 @@ keys.efm = 'e&flat; minor, E&flat;, F, G&flat;, A&flat;, B&flat;, C&flat;, D&fla
 
 
           let major_key = 'C';
-          let current_key = document.querySelector('selected');
+          let current_key = document.querySelector('.selected');
           if(current_key) {
             major_key = current_key.getAttribute('major');
           }

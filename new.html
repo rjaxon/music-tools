@@ -206,6 +206,10 @@
         pattern_params += '&pentatonic';
       }
 
+      if(is_triads() ) {
+        params += '&triads';
+        pattern_params += '&triads';
+      }
           let notes_frame = document.getElementById('notes_frame');
           notes_frame.src =  notes_frame.src.split('#')[0] + params;
 
