@@ -173,9 +173,10 @@
                    'bf', 'ef', 'af', 'df', 'gf'];
 
           let minor = document.getElementById('btn-minor');
-          let is_major = true;
-          if(minor.classList.contains('on')) {
-            is_major = false;
+          // let is_major = true;
+          //if(minor.classList.contains('on')) {
+          if(is_minor() ) {
+            //is_major = false;
             document.getElementById('major_header').classList.add('hidden');
             document.getElementById('minor_header').classList.remove('hidden');
           }
@@ -184,13 +185,13 @@
             document.getElementById('minor_header').classList.add('hidden');
           }
 
-         let _newkey = is_major ? major_key : minor_key;
+         let _newkey = is_minor() ? minor_key : major_key;
          if(keys[_newkey]) {
            let k = keys[ _newkey ].split(', ');
 
-           let pentatonic = document.getElementById('btn-pentatonic');
-           let is_5 = pentatonic.classList.contains('on');
-           update_scale_2(k, is_major, is_5);
+           // let pentatonic = document.getElementById('btn-pentatonic');
+           // let is_5 = pentatonic.classList.contains('on');
+           update_scale_2(k, is_major(), is_pentatonic());
          }
 
 
@@ -230,6 +231,13 @@
 
     
     function update_scale_2(keys, is_major, is_5) {
+
+      for (let i = 1; i <= 13; ++i) {
+          let c = document.getElementById('sc-' + i);
+          c.innerHTML = '';
+          c.classList.remove('penta-omit');
+
+      }
 
       let k = keys;
       let _ = (id) => { return document.getElementById(id); } ;
