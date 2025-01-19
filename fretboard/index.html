@@ -63,7 +63,8 @@
                         let capitalizeFirstLetter = function (string) {
                             return string.charAt(0).toUpperCase() + string.slice(1);
                         }
-                      let options = {
+
+                      let override = {
                         img_url: `../svg/${capitalizeFirstLetter(note_plain)}-color.svg`,
                         container_class: 'reduce90'
                       };
@@ -83,9 +84,9 @@
                           558, 625, 693, 756,
                           824, 893, 955, 1022
                       ];
-                      options.tops = tops;
-                      options.lefts = lefts;
-                      addPatternItem(interval, s, fret, fretboard, options);
+                      override.tops = tops;
+                      override.lefts = lefts;
+                      addPatternItem(interval, s, fret, fretboard, override);
       
                   }
               }

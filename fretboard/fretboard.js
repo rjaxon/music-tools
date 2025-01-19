@@ -220,8 +220,8 @@ function getValidNotes(options) {
     return valid_notes;
 }
 
-function addPatternItem(interval, s, fret, fretboard, render_options) {
-    let tops = render_options?.tops || {
+function addPatternItem(interval, s, fret, fretboard, render_override) {
+    let tops = render_override?.tops || {
         "high-e": 28,
         "b": 63,
         "g": 98,
@@ -229,7 +229,7 @@ function addPatternItem(interval, s, fret, fretboard, render_options) {
         "a": 168,
         "low-e": 203,
     };
-    let lefts = render_options?.lefts || [
+    let lefts = render_override?.lefts || [
         19, 98, 158, 225,
         292, 355, 424, 487,
         553, 620, 687, 751,
@@ -237,8 +237,8 @@ function addPatternItem(interval, s, fret, fretboard, render_options) {
     ];
 
     let span = document.createElement('span');
-    if(render_options) {
-      span.className = render_options.container_class;
+    if(render_override) {
+      span.className = render_override.container_class;
     }
     span.style.position = 'absolute';
     span.style.top = `${tops[s]}px`;
@@ -260,12 +260,12 @@ function addPatternItem(interval, s, fret, fretboard, render_options) {
     }
 
     let img_url = `../svg/number${interval}${color}.svg`;
-    // if(render_options) 
-    //   img.src = render_options.img_url || img_url;
+    // if(render_override) 
+    //   img.src = render_override.img_url || img_url;
     // else
     //   img.src = img_url;
 
-    img.src = render_options?.img_url || img_url;
+    img.src = render_override?.img_url || img_url;
 
     span.appendChild(img);
     fretboard.appendChild(span);
