@@ -30,6 +30,70 @@
     <script type="text/javascript">
 
 
+        function loadNames() {
+          if (0 == document.getElementsByClassName('bars').length) {
+              drawFret();
+          }
+
+          let strings = ['low-e', 'a', 'd', 'g', 'b', 'high-e'].reverse();
+          let keys = getNoteData();
+          strings.forEach((s, i) => drawNames(s, i, keys));
+        }
+
+        function drawNames(s, index, keys) {
+          let k = 'C';
+          let notes = keys.board[k][index];
+          let fretboard = document.getElementById('fretboard');
+      
+      
+          if (notes) {
+              for (let fret = 0; fret < notes.length; ++fret) {
+                  n = notes[fret];
+                  if (n) {
+      
+                      let valid_notes = " 1 2 3 4 5 6 7 ";
+      
+                      let note_plain = n.replace(/\d+/g, '');
+                      let interval = 1 + keys.scale[k].indexOf(note_plain)
+      
+                      if (valid_notes.indexOf(interval) < 0) {
+                          continue;
+                      }
+      
+      
+                      // console.log(s + ' ' + fret + ' ' + n );
+
+      
+                      let options = {
+                        img_url: `../svg/${note_plain}-color.svg`,
+                        container_class: 'reduce90'
+                      };
+
+                      let tops = {
+                          "high-e": 35,
+                          "b": 70,
+                          "g": 105,
+                          "d": 140,
+                          "a": 175,
+                          "low-e": 210,
+                      };
+
+                      let lefts = [
+                          19, 98, 162, 225,
+                          292, 361, 424, 487,
+                          553, 620, 687, 751,
+                          819, 887, 948, 1015
+                      ];
+                      options.tops = tops;
+                      options.lefts = lefts;
+                      addPatternItem(interval, s, fret, fretboard, options);
+      
+                  }
+              }
+          }
+
+        }
+
         
         function onHashChange() {
             // console.log('Hash changed to: ' + window.location.hash);
@@ -40,10 +104,15 @@
 
               let args = getArgs(paramList);
 
-              // console.log(args);
+              console.log(args);
               clearNotes();
 
-              if(args.pattern) {
+              if(args.names) {
+                clear('fretboard-header');
+                clear('fretboard');
+                loadNames();
+              }
+              else if(args.pattern) {
                 clear('fretboard-header');
                 clear('fretboard');
                 loadPatterns(args);
@@ -94,7 +163,7 @@
               } );
             }
 
-            console.log(args);
+            // console.log(args);
 
             // if(args.noload)
             //   return;
@@ -107,7 +176,6 @@
               loadPatterns(args);
             else
               loadNotes(args);
-
 
 
             if(window.location.hash.length > 1) {

@@ -63,3 +63,8 @@
     top: 5px;
 }
 
+
+.reduce90 {
+    transform: scale(0.80);
+    transform-origin: 0% 0%; 
+}
