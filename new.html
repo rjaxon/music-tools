@@ -1,286 +1,122 @@
 <html>
-
-    <head>
-        <title>
-            Music Notes
-        </title>
-
-        <!--script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.2.min.js"></script-->
-
-        <!--script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script-->
-        <link rel="stylesheet" href="./style.css">
-        <script src="./script.js"></script>
-  
-    </head>
-
-<style>
-
-</style>
-    <body>
-
-        <!--div>
-            <div id="notes">
-                <div class="note note-none hidden" style="left: 108px; top: 64px;" ></div>
-            </div>
-        </div-->
-
-  <div>
-        <iframe id="notes_frame" style=" border: 0px; width: 980px; height: 450px; position: relative; left: 0px;"
+   <head>
+      <title>
+         Music Notes
+      </title>
+      <!--script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.2.min.js"></script-->
+      <!--script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script-->
+      <link rel="stylesheet" href="./style.css">
+      <script src="./script.js"></script>
+   </head>
+   <style>
+   </style>
+   <body>
+      <div>
+         <iframe id="notes_frame" style=" border: 0px; width: 980px; height: 450px; position: relative; left: 0px;"
             src="./fretboard/" title="notes"></iframe>
-  </div>
-
-        <!--div>
-            <img src="./fretboard Natural.jpg" style="width: 1003px" />
-        </div-->
-
-
-        <div>
+      </div>
+      <div>
          <iframe style=" border: 0px; width: 1083px; height: 278px; position: relative; left: 0px;"
-         src="./fretboard/#names" title="note names"></iframe>
-        </div>
-
-
-
-        <div class="buttons">
-            <!--div id="btn-no-flats" onclick="board_toggle_class('no-flats', this)"> Hide Flats </div-->
-            <div id="btn-pentatonic" onclick="board_toggle_class('pentatonic', this)"> Pentatonic </div>
-            <div id="btn-triads" onclick="board_toggle_class('triads', this)"> Triads </div>
-            <div id="btn-minor" onclick="board_toggle_class('minor', this)"> Minor </div>
-        </div>
-
-        <div>
-
-            <div class="hidden board board-top">
-            </div>
-            <div id="board" class="hidden board board-main set-c">
-            </div>
-            <div id="board-bottom" class="hidden board board-bottom hidden">
-            </div>
-
-
-            <iframe id="pattern_frame" style=" border: 0px; width: 1083px; height: 278px; position: relative; left: 0px;"
+            src="./fretboard/#names" title="note names"></iframe>
+      </div>
+      <div class="buttons">
+         <div id="btn-pentatonic" onclick="board_toggle_class('pentatonic', this)"> Pentatonic </div>
+         <div id="btn-triads" onclick="board_toggle_class('triads', this)"> Triads </div>
+         <div id="btn-minor" onclick="board_toggle_class('minor', this)"> Minor </div>
+      </div>
+      <div>
+         <iframe id="pattern_frame" style=" border: 0px; width: 1083px; height: 278px; position: relative; left: 0px;"
             src="./fretboard/#key=C&pattern" title="notes"></iframe>
-
-            <!-- fret formula X = (fret * 66) + 9 -->
-            <div class="hidden test-fretboard-top">
-              <img src="./svg/dot-single.svg" style="width: 50px; position: absolute; top: -10px; left: 210px;" />
-              <img src="./svg/dot-single.svg" style="width: 50px; position: absolute; top: -10px; left: 342px;" />
-              <img src="./svg/dot-single.svg" style="width: 50px; position: absolute; top: -10px; left: 474px;" />
-              <img src="./svg/dot-single.svg" style="width: 50px; position: absolute; top: -10px; left: 606px;" />
-              <span style="width: 50px; position: absolute; top: -10px; left: 804px;" >
-                <img src="./svg/dot-single.svg" style="width: 50px; position: absolute; top: -7px; left: 0px;" />
-                <img src="./svg/dot-single.svg" style="width: 50px; position: absolute; top:  7px; left: 0px;" />
-              </span>
-            </div>
-
-
-            <div class="test-fretboard hidden"> </div>
-  
-            <div>
-                <table border=0 style="font-family: monospace; font-size: 30px; width: 950px; font-weight: bold; text-align: center;">
-                    <tr id="major_header"> <td>&nbsp;</td>
-                         <th> 1 </th>
-                         <th> - </th>
-                         <th> 2 </th>
-                         <th> - </th>
-                         <th> 3 </th>
-                         <th> 4 </th>
-                         <th> - </th>
-                         <th> 5 </th>
-                         <th> - </th>
-                         <th> 6 </th>
-                         <th> - </th>
-                         <th> 7 </th>
-                         <th> 1 </th> </tr>
-                    <tr id="minor_header" class="hidden"> <td>&nbsp;</td>
-                         <th> 1 </th>
-                         <th> - </th>
-                         <th> 2 </th>
-                         <th> 3 </th>
-                         <th> - </th>
-                         <th> 4 </th>
-                         <th> - </th>
-                         <th> 5 </th>
-                         <th> 6 </th>
-                         <th> - </th>
-                         <th> 7 </th>
-                         <th> - </th>
-                         <th> 1 </th> </tr>
-                    <tr> <td style="width: 180px;" id="sc-name">C Major</td>
-                         <td id="sc-1" class="red" > </td>
-                         <td id="sc-2" > </td>
-                         <td id="sc-3" > </td>
-                         <td id="sc-4" class="red" > </td>
-                         <td id="sc-5" class="red" > </td>
-                         <td id="sc-6" > </td>
-                         <td id="sc-7" > </td>
-                         <td id="sc-8" class="red" > </td>
-                         <td id="sc-9" > </td>
-                         <td id="sc-10"> </td>
-                         <td id="sc-11"> </td>
-                         <td id="sc-12"> </td>
-                         <td id="sc-13"> </td> </tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="buttons keys ">
-            <div id="btn-c" onclick="on_key_click_2('c', 'am', this)"  major="c" minor="am" > C / a </div>
-            <div id="btn-g" onclick="on_key_click_2('g', 'em', this)"  major="g" minor="em" > G / e </div>
-            <div id="btn-d" onclick="on_key_click_2('d', 'bm', this)"  major="d" minor="bm" > D / b </div>
-            <div id="btn-a" onclick="on_key_click_2('a', 'fsm', this)" major="a" minor="fsm"> A / f&sharp; </div>
-            <div id="btn-e" onclick="on_key_click_2('e', 'csm', this)" major="e" minor="csm"> E / c&sharp; </div>
-            <div id="btn-b" onclick="on_key_click_2('b', 'gsm', this)" major="b" minor="gsm"> B / g&sharp; </div>
-        </div>
-        <div class="buttons keys ">
-            <div id="btn-f"  onclick="on_key_click_2('f', 'dm', this)"  major="f" minor="dm" > F&natural; / d </div><!-- natural used because of odd rendering -->
-            <div id="btn-bf" onclick="on_key_click_2('bf', 'gm', this)"  major="bf" minor="gm" > B&flat; / g </div>
-            <div id="btn-ef" onclick="on_key_click_2('ef', 'cm', this)"  major="ef" minor="cm" > E&flat; / c </div>
-            <div id="btn-af" onclick="on_key_click_2('af', 'fm', this)"   major="af" minor="fm" > A&flat; / f </div>
-            <div id="btn-df" onclick="on_key_click_2('df', 'bfm', this)"  major="df" minor="bfm" > D&flat; / b&flat; </div>
-            <div id="btn-gf" onclick="on_key_click_2('gf', 'efm', this)"  major="gf" minor="efm" > G&flat; / e&flat; </div>
-        </div>
-
-        <div>
-            Drum Tracks from <a href="https://www.midnightdrummer.com/backing-drum-tracks/" target="_blank">midnightdrummer.com</a>
-        </div>
-
-        <div>
-            <a href="/metronome/">Metronome</a>
-        </div>
-
-        <!--div>
-            <audio controls loop >
-                  <source id="audio-player" src="./tracks/Basic-Shuffle-Groove-120-BPM.mp3" type="audio/mpeg" />
-                  Your browser does not support the audio element.
-            </audio>
-        </div-->
-
-        <!--div class="buttons">
-          <div id="audio" onclick="play_track();">PLAY</div>
-        </div-->
-
-
-
-    </body>
-
-    <script type="text/javascript">
-
-    function on_key_click_2(major_key, minor_key, sender) {
-        console.log(`1on_key_click_2 ${major_key} ${minor_key}`, sender);
-
-        let _keys = ['c', 'g', 'd', 'a', 'e', 'b', 'f',
-                   'bf', 'ef', 'af', 'df', 'gf'];
-
-          let minor = document.getElementById('btn-minor');
-          // let is_major = true;
-          //if(minor.classList.contains('on')) {
-          if(is_minor() ) {
-            //is_major = false;
-            document.getElementById('major_header').classList.add('hidden');
-            document.getElementById('minor_header').classList.remove('hidden');
-          }
-          else {
-            document.getElementById('major_header').classList.remove('hidden');
-            document.getElementById('minor_header').classList.add('hidden');
-          }
-
-         let _newkey = is_minor() ? minor_key : major_key;
-         if(keys[_newkey]) {
-           let k = keys[ _newkey ].split(', ');
-
-           // let pentatonic = document.getElementById('btn-pentatonic');
-           // let is_5 = pentatonic.classList.contains('on');
-           update_scale_2(k, is_major(), is_pentatonic());
-         }
-
-
-          // let capitalizeFirstLetter = function (string) {
-          //   return string.charAt(0).toUpperCase() + string.slice(1);
-          // }
-
-
-      let params = `#key=${capitalizeFirstLetter(major_key)}`;
-      let pattern_params = `#key=${capitalizeFirstLetter(major_key)}&pattern`;
-      if(is_pentatonic() ) {
-        params += '&pentatonic';
-        pattern_params += '&pentatonic';
-      }
-
-      if(is_triads() ) {
-        params += '&triads';
-        pattern_params += '&triads';
-      }
-          let notes_frame = document.getElementById('notes_frame');
-          notes_frame.src =  notes_frame.src.split('#')[0] + params;
-
-          let pattern_frame = document.getElementById('pattern_frame');
-          pattern_frame.src =  pattern_frame.src.split('#')[0] + pattern_params;
-
-
-        let previous = document.querySelector('.selected');
-        if(previous)
-          previous.className = '';
-
-        sender.classList.add('selected');
-        if(is_minor() ) {
-          sender.classList.add('selected-as-minor');
-        }
-        
-    }
-
-    
-    function update_scale_2(keys, is_major, is_5) {
-
-      for (let i = 1; i <= 13; ++i) {
-          let c = document.getElementById('sc-' + i);
-          c.innerHTML = '';
-          c.classList.remove('penta-omit');
-
-      }
-
-      let k = keys;
-      let _ = (id) => { return document.getElementById(id); } ;
-      _('sc-name' ).innerHTML = k[0]; 
-
-      if(is_major) {
-        _('sc-1' ).innerHTML = k[1]; 
-        _('sc-3' ).innerHTML = k[2]; 
-        _('sc-5' ).innerHTML = k[3]; 
-        _('sc-6' ).innerHTML = k[4]; 
-        _('sc-8' ).innerHTML = k[5]; 
-        _('sc-10').innerHTML = k[6]; 
-        _('sc-12').innerHTML = k[7]; 
-        _('sc-13').innerHTML = k[8]; 
-
-        if(is_5) {
-          _('sc-6' ).classList.add('penta-omit');
-          _('sc-12' ).classList.add('penta-omit');
-        }
-      }
-      else {
-        _('sc-1' ).innerHTML = k[1]; 
-        _('sc-3' ).innerHTML = k[2]; 
-        _('sc-4' ).innerHTML = k[3]; 
-        _('sc-6' ).innerHTML = k[4]; 
-        _('sc-8' ).innerHTML = k[5]; 
-        _('sc-9' ).innerHTML = k[6]; 
-        _('sc-11').innerHTML = k[7]; 
-        _('sc-13').innerHTML = k[8]; 
-        if(is_5) {
-          _('sc-3' ).classList.add('penta-omit');
-          _('sc-9' ).classList.add('penta-omit');
-        }
-      }
-
-    }
-
-
-    function on_load() {
+         <div>
+            <table border=0 style="font-family: monospace; font-size: 30px; width: 950px; font-weight: bold; text-align: center;">
+               <tr id="major_header">
+                  <td>&nbsp;</td>
+                  <th> 1 </th>
+                  <th> - </th>
+                  <th> 2 </th>
+                  <th> - </th>
+                  <th> 3 </th>
+                  <th> 4 </th>
+                  <th> - </th>
+                  <th> 5 </th>
+                  <th> - </th>
+                  <th> 6 </th>
+                  <th> - </th>
+                  <th> 7 </th>
+                  <th> 1 </th>
+               </tr>
+               <tr id="minor_header" class="hidden">
+                  <td>&nbsp;</td>
+                  <th> 1 </th>
+                  <th> - </th>
+                  <th> 2 </th>
+                  <th> 3 </th>
+                  <th> - </th>
+                  <th> 4 </th>
+                  <th> - </th>
+                  <th> 5 </th>
+                  <th> 6 </th>
+                  <th> - </th>
+                  <th> 7 </th>
+                  <th> - </th>
+                  <th> 1 </th>
+               </tr>
+               <tr>
+                  <td style="width: 180px;" id="sc-name">C Major</td>
+                  <td id="sc-1" class="red" > </td>
+                  <td id="sc-2" > </td>
+                  <td id="sc-3" > </td>
+                  <td id="sc-4" class="red" > </td>
+                  <td id="sc-5" class="red" > </td>
+                  <td id="sc-6" > </td>
+                  <td id="sc-7" > </td>
+                  <td id="sc-8" class="red" > </td>
+                  <td id="sc-9" > </td>
+                  <td id="sc-10"> </td>
+                  <td id="sc-11"> </td>
+                  <td id="sc-12"> </td>
+                  <td id="sc-13"> </td>
+               </tr>
+            </table>
+         </div>
+      </div>
+      <div class="buttons keys ">
+         <div id="btn-c" onclick="on_key_click_2('c', 'am', this)"  major="c" minor="am" > C / a </div>
+         <div id="btn-g" onclick="on_key_click_2('g', 'em', this)"  major="g" minor="em" > G / e </div>
+         <div id="btn-d" onclick="on_key_click_2('d', 'bm', this)"  major="d" minor="bm" > D / b </div>
+         <div id="btn-a" onclick="on_key_click_2('a', 'fsm', this)" major="a" minor="fsm"> A / f&sharp; </div>
+         <div id="btn-e" onclick="on_key_click_2('e', 'csm', this)" major="e" minor="csm"> E / c&sharp; </div>
+         <div id="btn-b" onclick="on_key_click_2('b', 'gsm', this)" major="b" minor="gsm"> B / g&sharp; </div>
+      </div>
+      <div class="buttons keys ">
+         <div id="btn-f"  onclick="on_key_click_2('f', 'dm', this)"  major="f" minor="dm" > F&natural; / d </div>
+         <!-- natural used because of odd rendering -->
+         <div id="btn-bf" onclick="on_key_click_2('bf', 'gm', this)"  major="bf" minor="gm" > B&flat; / g </div>
+         <div id="btn-ef" onclick="on_key_click_2('ef', 'cm', this)"  major="ef" minor="cm" > E&flat; / c </div>
+         <div id="btn-af" onclick="on_key_click_2('af', 'fm', this)"   major="af" minor="fm" > A&flat; / f </div>
+         <div id="btn-df" onclick="on_key_click_2('df', 'bfm', this)"  major="df" minor="bfm" > D&flat; / b&flat; </div>
+         <div id="btn-gf" onclick="on_key_click_2('gf', 'efm', this)"  major="gf" minor="efm" > G&flat; / e&flat; </div>
+      </div>
+      <div>
+         Drum Tracks from <a href="https://www.midnightdrummer.com/backing-drum-tracks/" target="_blank">midnightdrummer.com</a>
+      </div>
+      <div>
+         <a href="/metronome/">Metronome</a>
+      </div>
+      <!--div>
+         <audio controls loop >
+               <source id="audio-player" src="./tracks/Basic-Shuffle-Groove-120-BPM.mp3" type="audio/mpeg" />
+               Your browser does not support the audio element.
+         </audio>
+         </div-->
+      <!--div class="buttons">
+         <div id="audio" onclick="play_track();">PLAY</div>
+         </div-->
+   </body>
+   <script type="text/javascript">
+      //window.onload = () => { on_load(); };
       
-        on_key_click_2('c', 'am', document.getElementById('btn-c'));
-    }
-
-        on_load();
-    </script>
+      on_load();
+      
+   </script>
 </html>

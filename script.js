@@ -1,165 +1,3 @@
-// let svg_data = {};
-// svg_data.number1 = `
-// <svg fill="#FF0000" width="55px" height="55px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-// <path d="M16 3c-7.18 0-13 5.82-13 13s5.82 13 13 13 13-5.82 13-13-5.82-13-13-13z
-// M17.757 22.536h-2.469v-9.305c-0.901 0.841-1.964 1.463-3.188 1.867
-// v-2.234c0.644-0.211 1.344-0.612 2.099-1.202s1.273-1.278 1.555-2.064h2.003v12.938z"></path>
-// </svg> `;
-// 
-// svg_data.number6 = `
-// <svg fill="#004d00" width="55px" height="55px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
-// <path d="M16.062 16.037c-0.476 0-0.877 0.186-1.205 0.558-0.329 0.372-0.493 0.921-0.493 
-// 1.647 0 0.803 0.185 1.422 0.555 1.858 0.369 0.437 0.791 0.655 1.267 0.655 0.457 0 
-// 0.839-0.18 1.144-0.537s0.457-0.942 0.457-1.757c0-0.838-0.164-1.451-0.492-1.841s-0.74-0.583-1.233-0.583z
-// M16 3c-7.18 0-13 5.82-13 13s5.82 13 13 13 13-5.82 13-13-5.82-13-13-13z
-// M19.047 21.607c-0.773 0.797-1.768 1.194-2.98 1.194-1.302 0-2.372-0.505-3.21-1.516s-1.258-2.667-1.258-4.97c0-2.361 
-// 0.438-4.063 1.312-5.106s2.008-1.564 3.404-1.564c0.979 0 1.79 0.275 2.432 0.825 0.643 
-// 0.551 1.052 1.349 1.228 2.396l-2.391 0.263c-0.059-0.49-0.212-0.853-0.458-1.086-0.247-0.234-0.567-0.351-0.961-0.351-0.523 
-// 0-0.966 0.233-1.327 0.701s-0.589 1.44-0.683 2.92c0.615-0.726 1.381-1.089 2.297-1.089 1.032 0 1.916 0.392 2.652 
-// 1.176s1.104 1.797 1.104 3.038c0 1.318-0.387 2.374-1.161 3.169z"></path>
-// </svg>
-// `
-
-//function test_clear() {
-//    $('.test-fretboard').empty();
-//}
-//
-//function test_load(starting_fret) {
-//
-//    let s = starting_fret || 0;
-//
-//    test_clear();
-//
-//    test_add((s + 0) % 12, 0, 3);
-//    test_add((s + 1) % 12, 0, 4);
-//    test_add((s + 3) % 12, 0, 5);
-//    test_add((s + 5) % 12, 0, 6);
-//    test_add((s + 7) % 12, 0, 7);
-//    test_add((s + 8) % 12, 0, 1);
-//    test_add((s + 10) % 12, 0, 2);
-//
-//    test_add((s + 0) % 12, 1, 7);
-//    test_add((s + 1) % 12, 1, 1);
-//    test_add((s + 3) % 12, 1, 2);
-//    test_add((s + 5) % 12, 1, 3);
-//    test_add((s + 6) % 12, 1, 4);
-//    test_add((s + 8) % 12, 1, 5);
-//    test_add((s + 10) % 12, 1, 6);
-//
-//    test_add((s + 0) % 12, 2, 5);
-//    test_add((s + 2) % 12, 2, 6);
-//    test_add((s + 4) % 12, 2, 7);
-//    test_add((s + 5) % 12, 2, 1);
-//    test_add((s + 7) % 12, 2, 2);
-//    test_add((s + 9) % 12, 2, 3);
-//    test_add((s + 10) % 12, 2, 4);
-//
-//    test_add((s + 0) % 12, 3, 2);
-//    test_add((s + 2) % 12, 3, 3);
-//    test_add((s + 3) % 12, 3, 4);
-//    test_add((s + 5) % 12, 3, 5);
-//    test_add((s + 7) % 12, 3, 6);
-//    test_add((s + 9) % 12, 3, 7);
-//    test_add((s + 10) % 12, 3, 1);
-//
-//    test_add((s + 0) % 12, 4, 6);
-//    test_add((s + 2) % 12, 4, 7);
-//    test_add((s + 3) % 12, 4, 1);
-//    test_add((s + 5) % 12, 4, 2);
-//    test_add((s + 7) % 12, 4, 3);
-//    test_add((s + 8) % 12, 4, 4);
-//    test_add((s + 10) % 12, 4, 5);
-//
-//    test_add((s + 0) % 12, 5, 3);
-//    test_add((s + 1) % 12, 5, 4);
-//    test_add((s + 3) % 12, 5, 5);
-//    test_add((s + 5) % 12, 5, 6);
-//    test_add((s + 7) % 12, 5, 7);
-//    test_add((s + 8) % 12, 5, 1);
-//    test_add((s + 10) % 12, 5, 2);
-//
-//    let $fb = $('.test-fretboard');
-//    for (let i = 12, s = 0; i <= 15; ++i, ++s) {
-//        for (let j = 0; j < 6; ++j) {
-//
-//            let $f = $(`#fret-${s}${j}`);
-//            if ($f.length) {
-//                let $n = $f.clone();
-//                $n[0].id = '';
-//                $n[0].style.left = `${i * 66 + 9}px`;
-//
-//                $fb.append($n[0]);
-//            }
-//        }
-//    }
-//}
-//
-//let svg_1 = svg_data.number1;
-//let svg_6 = svg_data.number6;
-//async function test_add(x, y, number) {
-//    let container = document.createElement('div');
-//    let bg = document.createElement('div');
-//    let img = document.createElement('img');
-//    let $c = $(container);
-//    let $b = $(bg);
-//    let $i = $(img);
-//
-//    container.id = `fret-${x}${y}`;
-//
-//    let _y = [7, 60, 115, 169, 225, 280];
-//    let _s = ['e-h', 'B', 'G', 'D', 'A', 'E-l'];
-//
-//    $c.attr('style', `left: ${66*x+9}px; top: ${_y[y]}px;`);
-//    $i.attr('src', `./svg/number${number}.svg`);
-//
-//    $c.addClass(`i${number}`);
-//    $c.addClass(`fr${x}`);
-//    $c.addClass(`st${_s[y]}`);
-//    $c.addClass('test-container');
-//    $b.addClass('test-circle');
-//    $i.addClass('test-note');
-//
-//    $c.append(bg);
-//
-//
-//    if (number == 1 || number == 6) {
-//        let span = document.createElement('span');
-//        span.style.position = 'absolute';
-//
-//        if (number == 1 && svg_1) {
-//            span.innerHTML = svg_1;
-//            $c.append(span);
-//        } else if (number == 6 && svg_6) {
-//            span.innerHTML = svg_6;
-//            $c.append(span);
-//        } else {
-//            let result = await $.ajax({
-//                url: `./svg/number${number}.svg`,
-//                dataType: 'text'
-//            });
-//
-//            let svg_image = result.replaceAll('800px', '55px');
-//            svg_image = svg_image.replace('svg fill="#000000"', `svg fill="#${number == 1 ? 'ff0000' : '004d00'}"`);
-//            svg_image = svg_image.replace(/<!--.*-->/g, '');
-//            svg_image = svg_image.replace(/<title>.*<\/title>/, '');
-//
-//            span.innerHTML = svg_image;
-//
-//            if (number == 1) {
-//                svg_1 = svg_image;
-//            } else {
-//                svg_6 = svg_image;
-//            }
-//
-//            $c.append(span);
-//        }
-//    } else {
-//        $c.append(img);
-//    }
-//
-//
-//    $('.test-fretboard').append(container);
-//}
 
 let keys = {};
 keys.c = 'C Major, C, D, E, F, G, A, B, C';
@@ -190,167 +28,6 @@ keys.bfm = 'b&flat; minor, B&flat;, C, D&flat;, E&flat;, F, G&flat;, A&flat;, B&
 keys.gf = 'G&flat; Major, G&flat;, A&flat;, B&flat;, C&flat;, D&flat;, E&flat;, F, G&flat;';
 keys.efm = 'e&flat; minor, E&flat;, F, G&flat;, A&flat;, B&flat;, C&flat;, D&flat;, E&flat;';
 
-// function on_key_click(major_key, minor_key, sender) {
-// 
-//     let _keys = ['c', 'g', 'd', 'a', 'e', 'b', 'f',
-//         'bf', 'ef', 'af', 'df', 'gf'
-//     ];
-//     let $board = $('#board');
-//     let $scale = $('#board-bottom');
-//     $s = $(sender);
-// 
-// 
-//     _keys.forEach(key => {
-//         $board.removeClass('set-' + key);
-//         $scale.removeClass('scale-' + key);
-//     });
-// 
-//     for (let i = 1; i <= 13; ++i) {
-//         let $c = $('#sc-' + i);
-//         $c.html('');
-//         $c.removeClass('penta-omit');
-// 
-//     }
-// 
-// 
-//     let $pentatonic = $('#btn-pentatonic');
-//     let $triads = $('#btn-triads');
-//     let $minor = $('#btn-minor');
-//     let $selected = $('.selected');
-//     let was_minor = $selected.hasClass('selected-as-minor');
-//     $selected.removeClass('selected-as-minor');
-//     $selected.removeClass('selected');
-//     $s.addClass('selected');
-// 
-//     if ($minor.hasClass('on')) {
-//         $s.addClass('selected-as-minor');
-//     }
-// 
-//     // if already selected, should it toggle to minor?
-// 
-//     // if($selected.length > 0 && $s.length > 0) {
-//     //   if($selected[0].id == $s[0].id) {
-//     //     if(!was_minor) {
-//     //       $s.addClass('selected-as-minor');
-//     //       // set up as minor
-//     //     }
-//     //     else {
-//     //       // set up as major
-//     //     }
-//     //   }
-//     // }
-// 
-// 
-//     $board.addClass('set-' + major_key);
-//     $scale.addClass('scale-' + major_key);
-// 
-//     let is_major = true;
-//     if ($minor.hasClass('on')) {
-//         is_major = false;
-//         $('#major_header').addClass('hidden');
-//         $('#minor_header').removeClass('hidden');
-//     } else {
-//         $('#major_header').removeClass('hidden');
-//         $('#minor_header').addClass('hidden');
-//     }
-// 
-//     let _newkey = is_major ? major_key : minor_key;
-//     if (keys[_newkey]) {
-//         let k = keys[_newkey].split(', ');
-// 
-//         let is_5 = $pentatonic.hasClass('on');
-//         update_scale(k, is_major, is_5);
-//     }
-// 
-//     let fretkey = null;
-//     if (is_major) {
-//         console.log('major: ' + _newkey);
-//         fretkey = _newkey;
-//     } else {
-//         console.log('minor: ' + _newkey);
-//         fretkey = $s.attr('major');
-//     }
-// 
-//     if (fretkey) {
-// 
-//         notes_clear();
-// 
-//         if (fretkey.length == 1)
-//             fretkey = fretkey.toUpperCase();
-//         else if (fretkey.length == 2)
-//             fretkey = fretkey[0].toUpperCase() + fretkey[1];
-// 
-// 
-//         if (fret_key[fretkey]) {
-//             notes_load(fretkey);
-//         } else {
-//             console.log(fretkey + ' not found.');
-//         }
-//     }
-// 
-//     let offsets = {
-//         'c': 0,
-//         'df': 1,
-//         'd': 2,
-//         'ef': 3,
-//         'e': 4,
-//         'f': 5,
-//         'gf': 6,
-//         'g': 7,
-//         'af': 8,
-//         'a': 9,
-//         'bf': 10,
-//         'b': 11
-//     };
-// 
-//     let capitalizeFirstLetter = function(string) {
-//         return string.charAt(0).toUpperCase() + string.slice(1);
-//     }
-// 
-//     let notes_frame = document.getElementById('notes_frame');
-//     notes_frame.src = notes_frame.src.split('?')[0] + `?key=${capitalizeFirstLetter(major_key)}`;
-// 
-//     let pattern_frame = document.getElementById('pattern_frame');
-//     pattern_frame.src = pattern_frame.src.split('?')[0] + `?key=${capitalizeFirstLetter(major_key)}&pattern`;
-// 
-//     test_load(offsets[fretkey.toLowerCase()]);
-// }
-
-// function update_scale(keys, is_major, is_5) {
-// 
-//     let k = keys;
-//     $('#sc-name').html(k[0]);
-// 
-//     if (is_major) {
-//         $('#sc-1').html(k[1]);
-//         $('#sc-3').html(k[2]);
-//         $('#sc-5').html(k[3]);
-//         $('#sc-6').html(k[4]);
-//         $('#sc-8').html(k[5]);
-//         $('#sc-10').html(k[6]);
-//         $('#sc-12').html(k[7]);
-//         $('#sc-13').html(k[8]);
-// 
-//         if (is_5) {
-//             $('#sc-6').addClass('penta-omit');
-//             $('#sc-12').addClass('penta-omit');
-//         }
-//     } else {
-//         $('#sc-1').html(k[1]);
-//         $('#sc-3').html(k[2]);
-//         $('#sc-4').html(k[3]);
-//         $('#sc-6').html(k[4]);
-//         $('#sc-8').html(k[5]);
-//         $('#sc-9').html(k[6]);
-//         $('#sc-11').html(k[7]);
-//         $('#sc-13').html(k[8]);
-//         if (is_5) {
-//             $('#sc-3').addClass('penta-omit');
-//             $('#sc-9').addClass('penta-omit');
-//         }
-//     }
-// 
-// }
 
 function is_pentatonic() {
     let item = document.getElementById('btn-pentatonic');
@@ -407,7 +84,7 @@ function board_toggle_class(css_class, sender) {
     else {
         set_pentatonic(false);
         set_triads(false);
-        set_minor(false);
+        // set_minor(false);
         sender.classList.add('on');
     }
 
@@ -444,181 +121,120 @@ function board_toggle_class(css_class, sender) {
     let pattern_frame = document.getElementById('pattern_frame');
     pattern_frame.src = pattern_frame.src.split('#')[0] + pattern_params;
 
-
-
-    // let $board = $('#board');
-
-    // if(sender) {
-    //     let $s = $(sender);
-    //     if($s.hasClass('on') ) {
-    //         $s.removeClass('on');
-    //     }
-    //     else {
-    //         $s.addClass('on');
-    //     }
-    // }
-
-    // if($board.hasClass(css_class)) {
-    //     $board.removeClass(css_class);
-    //     if(css_class === 'minor') {
-    //       console.log('minor toggle off');
-
-    //       // update buttons and scale
-    //     } 
-    //     else if(css_class === 'pentatonic') {
-    //       $('.penta-omit').removeClass('penta-omit');
-
-    //       $('.i4.hidden, .i7.hidden').removeClass('hidden');
-    //     }
-    //     else if(css_class === 'triads') {
-    //       $('.i2.hidden, .i4.hidden, .i6.hidden, .i7.hidden').removeClass('hidden');
-    //     }
-
-    // }
-    // else {
-    //     $board.addClass(css_class);
-    //     if(css_class === 'minor') {
-    //       console.log('minor toggle on');
-
-    //       // update buttons and scale
-    //       // let $minor = $('#btn-minor');
-    //       // let is_major = $minor.hasClass('on');
-    //       // let _newkey = is_major ? major_key : minor_key;
-    //       // let k = keys[ _newkey ].split(', ');
-    //       // let is_5 = $pentatonic.hasClass('on');
-    //       // update_scale(k, is_major, is_5);
-    //     }
-    //     else if(css_class === 'pentatonic') {
-    //       // update penta scale notes
-    //       // let $minor = $('#btn-minor');
-    //       // let is_major = $minor.hasClass('on');
-    //       // let k = keys[ _newkey ].split(', ');
-    //       // let is_5 = $pentatonic.hasClass('on');
-    //       // update_scale(k, is_major, is_5);
-
-    //       $('.i4, .i7').addClass('hidden');
-    //     }
-    //     else if(css_class === 'triads') {
-    //       $('.i2, .i4, .i6, .i7').addClass('hidden');
-    //     }
-    // }
-
-
-
 }
 
+    function on_key_click_2(major_key, minor_key, sender) {
+        console.log(`1on_key_click_2 ${major_key} ${minor_key}`, sender);
+
+        let _keys = ['c', 'g', 'd', 'a', 'e', 'b', 'f',
+                   'bf', 'ef', 'af', 'df', 'gf'];
+
+          let minor = document.getElementById('btn-minor');
+          // let is_major = true;
+          //if(minor.classList.contains('on')) {
+          if(is_minor() ) {
+            //is_major = false;
+            document.getElementById('major_header').classList.add('hidden');
+            document.getElementById('minor_header').classList.remove('hidden');
+          }
+          else {
+            document.getElementById('major_header').classList.remove('hidden');
+            document.getElementById('minor_header').classList.add('hidden');
+          }
+
+         let _newkey = is_minor() ? minor_key : major_key;
+         if(keys[_newkey]) {
+           let k = keys[ _newkey ].split(', ');
+
+           // let pentatonic = document.getElementById('btn-pentatonic');
+           // let is_5 = pentatonic.classList.contains('on');
+           update_scale_2(k, is_major(), is_pentatonic());
+         }
 
 
-//function notes_load(key_to_load) {
-//    let key = fret_key[key_to_load];
-//    if (!key) {
-//        console.log('Key not found');
-//        return;
-//    }
-//
-//    let _string = ['e', 'B', 'G', 'D', 'A', 'E'];
-//
-//    for (let i = 0; i < 6; ++i) {
-//        for (let j = 0; j < 14; ++j) {
-//            let note = key[i][j];
-//            if (note) {
-//                let s = null;
-//                if (note.length > 2) {
-//                    let n = note.split('.');
-//                    note = n[0];
-//                    s = n[1];
-//                }
-//                let string = _string[i];
-//                let fret = j;
-//
-//                notes_add(note, string, fret, s);
-//            }
-//        }
-//    }
-//}
-//
-//function notes_clear() {
-//    $('#notes').empty();
-//}
-//
-//function notes_add(note, string, fret, s) {
-//    let div = document.createElement('div');
-//    let $div = $(div);
-//    $div.addClass('note');
-//    if (s) {
-//        $div.addClass(note + '.' + s);
-//        if (note.indexOf('staff') < 0) {
-//            $div.attr('title', (note[0].toUpperCase() + (s == 's' ? '#' : 'b') + ' ' + note[1]));
-//        }
-//    } else {
-//        $div.addClass(note);
-//        if (note.indexOf('staff') < 0) {
-//            $div.attr('title', note[0].toUpperCase() + ' ' + note[1]);
-//        }
-//    }
-//
-//
-//    let _note = note_data.note[note];
-//    let left = note_data[string][fret][0];
-//    let _top = note_data[string][fret][1];
-//
-//    if (_note.length >= 3) {
-//        left += _note[2];
-//    }
-//
-//    if (_note.length >= 4) {
-//        _top += _note[3];
-//    }
-//
-//    let width = null;
-//    let height = null;
-//    if (_note.length >= 6) {
-//        width = _note[4];
-//        height = _note[5];
-//    }
-//
-//    if (_note.length >= 7) {
-//        notes_add('staff_' + _note[6], string, fret)
-//    }
-//
-//    let _s = null;
-//
-//    if (s) {
-//        if (s === 's') {
-//            left += 3;
-//            _s = document.createElement('div');
-//            let $_s = $(_s);
-//            $_s.addClass('sharp');
-//            $_s.attr('style', `
-//                    left: ${left - 9}px;
-//                    top: ${_top - 6}px; `);
-//
-//        } else if (s === 'f') {
-//            left += 3;
-//            _s = document.createElement('div');
-//            let $_s = $(_s);
-//            $_s.addClass('flat');
-//            $_s.attr('style', `
-//                    left: ${left - 9}px;
-//                    top: ${_top - 10}px; `);
-//        }
-//    }
-//
-//
-//    let style = `background-position: ${_note[0]}px ${_note[1]}px;
-//          left: ${left}px;
-//          top: ${_top}px; `;
-//
-//    if (width != null && height != null) {
-//        style += ` width: ${width}px; height: ${height}px;`;
-//    }
-//
-//    $div.attr('style', style);
-//
-//
-//    $('#notes').append(div);
-//
-//
-//    if (_s)
-//        $('#notes').append(_s);
-//}
+          // let capitalizeFirstLetter = function (string) {
+          //   return string.charAt(0).toUpperCase() + string.slice(1);
+          // }
+
+
+      let params = `#key=${capitalizeFirstLetter(major_key)}`;
+      let pattern_params = `#key=${capitalizeFirstLetter(major_key)}&pattern`;
+      if(is_pentatonic() ) {
+        params += '&pentatonic';
+        pattern_params += '&pentatonic';
+      }
+
+      if(is_triads() ) {
+        params += '&triads';
+        pattern_params += '&triads';
+      }
+          let notes_frame = document.getElementById('notes_frame');
+          notes_frame.src =  notes_frame.src.split('#')[0] + params;
+
+          let pattern_frame = document.getElementById('pattern_frame');
+          pattern_frame.src =  pattern_frame.src.split('#')[0] + pattern_params;
+
+
+        let previous = document.querySelector('.selected');
+        if(previous)
+          previous.className = '';
+
+        sender.classList.add('selected');
+        if(is_minor() ) {
+          sender.classList.add('selected-as-minor');
+        }
+        
+    }
+
+    
+    function update_scale_2(keys, is_major, is_5) {
+
+      for (let i = 1; i <= 13; ++i) {
+          let c = document.getElementById('sc-' + i);
+          c.innerHTML = '';
+          c.classList.remove('penta-omit');
+
+      }
+
+      let k = keys;
+      let _ = (id) => { return document.getElementById(id); } ;
+      _('sc-name' ).innerHTML = k[0]; 
+
+      if(is_major) {
+        _('sc-1' ).innerHTML = k[1]; 
+        _('sc-3' ).innerHTML = k[2]; 
+        _('sc-5' ).innerHTML = k[3]; 
+        _('sc-6' ).innerHTML = k[4]; 
+        _('sc-8' ).innerHTML = k[5]; 
+        _('sc-10').innerHTML = k[6]; 
+        _('sc-12').innerHTML = k[7]; 
+        _('sc-13').innerHTML = k[8]; 
+
+        if(is_5) {
+          _('sc-6' ).classList.add('penta-omit');
+          _('sc-12' ).classList.add('penta-omit');
+        }
+      }
+      else {
+        _('sc-1' ).innerHTML = k[1]; 
+        _('sc-3' ).innerHTML = k[2]; 
+        _('sc-4' ).innerHTML = k[3]; 
+        _('sc-6' ).innerHTML = k[4]; 
+        _('sc-8' ).innerHTML = k[5]; 
+        _('sc-9' ).innerHTML = k[6]; 
+        _('sc-11').innerHTML = k[7]; 
+        _('sc-13').innerHTML = k[8]; 
+        if(is_5) {
+          _('sc-3' ).classList.add('penta-omit');
+          _('sc-9' ).classList.add('penta-omit');
+        }
+      }
+
+    }
+
+
+    function on_load() {
+      
+        on_key_click_2('c', 'am', document.getElementById('btn-c'));
+    }
+
