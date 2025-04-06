@@ -152,7 +152,7 @@ function drawNotes(s, index, keys, options) {
     let k = options.key || 'C';
     let notes = keys.board[k][index];
     if (notes) {
-        for (let fret = 0; fret < 14 /*notes.length*/ ; ++fret) {
+        for (let fret = 0; fret < 15 /*notes.length*/ ; ++fret) {
             n = notes[fret];
             if (n) {
                 let note_plain = n.replace(/\d+/g, '');
@@ -201,7 +201,9 @@ function drawNotes(s, index, keys, options) {
                             break;
                     }
                 }
-                addNote(s, _n[0], fret, a, interval);
+                if (fret < 14) {
+                    addNote(s, _n[0], fret, a, interval);
+                }
             }
         }
     }
