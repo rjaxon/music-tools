@@ -123,68 +123,73 @@ function board_toggle_class(css_class, sender) {
 
 }
 
-    function on_key_click_2(major_key, minor_key, sender) {
-        console.log(`1on_key_click_2 ${major_key} ${minor_key}`, sender);
+function on_key_click_2(major_key, minor_key, sender) {
+    console.log(`1on_key_click_2 ${major_key} ${minor_key}`, sender);
 
-        let _keys = ['c', 'g', 'd', 'a', 'e', 'b', 'f',
-                   'bf', 'ef', 'af', 'df', 'gf'];
+    let _keys = ['c', 'g', 'd', 'a', 'e', 'b', 'f',
+        'bf', 'ef', 'af', 'df', 'gf'];
 
-          let minor = document.getElementById('btn-minor');
-          // let is_major = true;
-          //if(minor.classList.contains('on')) {
-          if(is_minor() ) {
-            //is_major = false;
-            document.getElementById('major_header').classList.add('hidden');
-            document.getElementById('minor_header').classList.remove('hidden');
-          }
-          else {
-            document.getElementById('major_header').classList.remove('hidden');
-            document.getElementById('minor_header').classList.add('hidden');
-          }
+    let minor = document.getElementById('btn-minor');
+    // let is_major = true;
+    //if(minor.classList.contains('on')) {
+    if (is_minor()) {
+        //is_major = false;
+        document.getElementById('major_header').classList.add('hidden');
+        document.getElementById('minor_header').classList.remove('hidden');
+    }
+    else {
+        document.getElementById('major_header').classList.remove('hidden');
+        document.getElementById('minor_header').classList.add('hidden');
+    }
 
-         let _newkey = is_minor() ? minor_key : major_key;
-         if(keys[_newkey]) {
-           let k = keys[ _newkey ].split(', ');
+    let _newkey = is_minor() ? minor_key : major_key;
+    if (keys[_newkey]) {
+        let k = keys[_newkey].split(', ');
 
-           // let pentatonic = document.getElementById('btn-pentatonic');
-           // let is_5 = pentatonic.classList.contains('on');
-           update_scale_2(k, is_major(), is_pentatonic());
-         }
-
-
-          // let capitalizeFirstLetter = function (string) {
-          //   return string.charAt(0).toUpperCase() + string.slice(1);
-          // }
+        // let pentatonic = document.getElementById('btn-pentatonic');
+        // let is_5 = pentatonic.classList.contains('on');
+        update_scale_2(k, is_major(), is_pentatonic());
+    }
 
 
-      let params = `#key=${capitalizeFirstLetter(major_key)}`;
-      let pattern_params = `#key=${capitalizeFirstLetter(major_key)}&pattern`;
-      if(is_pentatonic() ) {
+    // let capitalizeFirstLetter = function (string) {
+    //   return string.charAt(0).toUpperCase() + string.slice(1);
+    // }
+
+
+    let params = `#key=${capitalizeFirstLetter(major_key)}`;
+    let pattern_params = `#key=${capitalizeFirstLetter(major_key)}&pattern`;
+    if (is_pentatonic()) {
         params += '&pentatonic';
         pattern_params += '&pentatonic';
-      }
+    }
 
-      if(is_triads() ) {
+    if (is_triads()) {
         params += '&triads';
         pattern_params += '&triads';
-      }
-          let notes_frame = document.getElementById('notes_frame');
-          notes_frame.src =  notes_frame.src.split('#')[0] + params;
-
-          let pattern_frame = document.getElementById('pattern_frame');
-          pattern_frame.src =  pattern_frame.src.split('#')[0] + pattern_params;
-
-
-        let previous = document.querySelector('.selected');
-        if(previous)
-          previous.className = '';
-
-        sender.classList.add('selected');
-        if(is_minor() ) {
-          sender.classList.add('selected-as-minor');
-        }
-        
     }
+
+    if (is_minor()) {
+        pattern_params += '&minor';
+    }
+
+    let notes_frame = document.getElementById('notes_frame');
+    notes_frame.src = notes_frame.src.split('#')[0] + params;
+
+    let pattern_frame = document.getElementById('pattern_frame');
+    pattern_frame.src = pattern_frame.src.split('#')[0] + pattern_params;
+
+
+    let previous = document.querySelector('.selected');
+    if (previous)
+        previous.className = '';
+
+    sender.classList.add('selected');
+    if (is_minor()) {
+        sender.classList.add('selected-as-minor');
+    }
+
+}
 
     
     function update_scale_2(keys, is_major, is_5) {

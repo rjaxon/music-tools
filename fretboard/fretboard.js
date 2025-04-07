@@ -140,7 +140,7 @@ function drawPattern(s, index, keys, options) {
 
                 // console.log(s + ' ' + fret + ' ' + n );
 
-                addPatternItem(interval, s, fret, fretboard);
+                addPatternItem(interval, s, fret, fretboard, null, options);
 
             }
         }
@@ -222,7 +222,7 @@ function getValidNotes(options) {
     return valid_notes;
 }
 
-function addPatternItem(interval, s, fret, fretboard, render_override) {
+function addPatternItem(interval, s, fret, fretboard, render_override, options) {
     let tops = render_override?.tops || {
         "high-e": 28,
         "b": 63,
@@ -254,14 +254,34 @@ function addPatternItem(interval, s, fret, fretboard, render_override) {
     let img = document.createElement('img');
     img.setAttribute('width', '42');
     img.style.position = 'absolute';
-    let color = '';
-    if (interval == 1) {
-        color = '-red';
-    } else if (interval == 6) {
-        color = '-green';
+
+    let _interval = interval;
+    let minor_img = '';
+    let minor_map = [-1, 3, 4, 5, 6, 7, 1, 2];
+    if (options?.minor) {
+        minor_img = 'minor/';
+        _interval = minor_map[interval];
+
+        console.log(interval + ' -> ' + _interval);
     }
 
-    let img_url = `../svg/number${interval}${color}.svg`;
+    let color = '';
+    if (!options?.minor) {
+        if (_interval == 1) {
+            color = '-red';
+        } else if (_interval == 6) {
+            color = '-green';
+        }
+    } else {
+        if (_interval == 1) {
+            color = '-green';
+        } else if (_interval == 3) {
+            color = '-red';
+        }
+    }
+
+    let minor = options?.minor ? 'minor/' : '';
+    let img_url = `../svg/${minor_img}number${_interval}${color}.svg`;
     // if(render_override) 
     //   img.src = render_override.img_url || img_url;
     // else
