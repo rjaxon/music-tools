@@ -170,6 +170,7 @@ function on_key_click_2(major_key, minor_key, sender) {
     }
 
     if (is_minor()) {
+        params += '&minor';
         pattern_params += '&minor';
     }
 

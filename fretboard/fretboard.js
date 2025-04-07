@@ -164,7 +164,7 @@ function drawNotes(s, index, keys, options) {
                     let valid_notes = " 1 2 3 4 5 6 7 ";
 
                     if (options.triads) {
-                        valid_notes = " 1 3 5 ";
+                        valid_notes = options?.minor ? " 1 3 6 " : " 1 3 5 ";
                     } else if (options.pentatonic || options.blues) {
                         valid_notes = " 1 2 3 5 6 ";
 
@@ -213,7 +213,7 @@ function getValidNotes(options) {
     let valid_notes = " 1 2 3 4 5 6 7 ";
 
     if (options.triads) {
-        valid_notes = " 1 3 5 ";
+        valid_notes = options?.minor ? " 1 3 6 " : " 1 3 5 ";
     } else if (options.pentatonic || options.blues) {
         valid_notes = " 1 2 3 5 6 ";
     }
@@ -261,8 +261,6 @@ function addPatternItem(interval, s, fret, fretboard, render_override, options) 
     if (options?.minor) {
         minor_img = 'minor/';
         _interval = minor_map[interval];
-
-        console.log(interval + ' -> ' + _interval);
     }
 
     let color = '';
