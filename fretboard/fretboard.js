@@ -132,6 +132,9 @@ function drawPattern(s, index, keys, options) {
 
                 let note_plain = n.replace(/\d+/g, '');
                 let interval = 1 + keys.scale[k].indexOf(note_plain)
+                //if (valid_notes[interval + 1] == 'b') {
+                //    note_plain = note_plain + '.f';
+                //}
 
                 if (valid_notes.indexOf(interval) < 0) {
                     continue;
@@ -227,17 +230,26 @@ function drawNotes(s, index, keys, options) {
 function getValidNotes(options) {
     let valid_notes = " 1 2 3 4 5 6 7 ";
 
-    if (options.triads) {
-        valid_notes = options?.minor ? " 1 3 6 " : " 1 3 5 ";
-
-    } else if (options?.maj7) {
+    if (options?.maj7) {
         valid_notes = " 1 3 5 7 ";
+
+    } else if (options?.min7) {
+        valid_notes = " 6 1 3 5 ";
 
     } else if (options?.maj9) {
         valid_notes = " 1 3 5 7 2 ";
 
+    } else if (options?.min9) {
+        valid_notes = " 6 1 3 5 7 ";
+
+    } else if (options?.dom7) {
+        throw "Dominant 7th is not implemented";
+
     } else if (options?.majadd9) {
         valid_notes = " 1 3 5 2 ";
+
+    } else if (options?.minadd9) {
+        valid_notes = " 6 1 3 7 ";
 
     } else if (options?.sus2) {
         valid_notes = " 1 2 5 ";
@@ -247,7 +259,14 @@ function getValidNotes(options) {
 
     } else if (options.pentatonic || options.blues) {
         valid_notes = " 1 2 3 5 6 ";
-    }
+    } else if (options.chord && options.major) {
+        valid_notes = " 1 3 5 ";
+
+    } else if (options.chord && options.minor) {
+        // valid_notes = " 1 3b 5 ";
+        valid_notes = " 6 1 3 ";
+
+    }  
 
 
     return valid_notes;
@@ -309,7 +328,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, options) 
         }
     }
 
-    let minor = options?.minor ? 'minor/' : '';
+    //let minor = options?.minor ? 'minor/' : '';
     let img_url = `../svg/${minor_img}number${_interval}${color}.svg`;
     // if(render_override) 
     //   img.src = render_override.img_url || img_url;
@@ -495,6 +514,41 @@ function init() {
 }
 
 let strings = ['low-e', 'a', 'd', 'g', 'b', 'high-e'];
+
+function getNoteRelatives(key) {
+
+    let relatives = {
+        C: "a",
+        G: "e",
+        D: "b",
+        A: "fs",
+        E: "cs",
+        B: "gs",
+        F: "d",
+        Bf: "g",
+        Ef: "c",
+        Af: "f",
+        Df: "bf",
+        Gf: "ef",
+
+        a: "C",
+        e: "G",
+        b: "D",
+        fs: "A",
+        cs: "E",
+        gs: "B",
+        d: "F",
+        g: "Bf",
+        c: "Ef",
+        f: "Af",
+        bf: "Df",
+        ef: "Gf"
+
+    };
+
+
+    return relatives[key];
+}
 
 function getNoteData() {
 
