@@ -165,6 +165,21 @@ function drawNotes(s, index, keys, options) {
 
                     if (options.triads) {
                         valid_notes = options?.minor ? " 1 3 6 " : " 1 3 5 ";
+                    } else if (options?.maj7) {
+                        valid_notes = " 1 3 5 7 ";
+
+                    } else if (options?.maj9) {
+                        valid_notes = " 1 3 5 7 2 ";
+
+                    } else if (options?.majadd9) {
+                        valid_notes = " 1 3 5 2 ";
+
+                    } else if (options?.sus2) {
+                        valid_notes = " 1 2 5 ";
+
+                    } else if (options?.sus4) {
+                        valid_notes = " 1 4 5 ";
+
                     } else if (options.pentatonic || options.blues) {
                         valid_notes = " 1 2 3 5 6 ";
 
@@ -214,6 +229,22 @@ function getValidNotes(options) {
 
     if (options.triads) {
         valid_notes = options?.minor ? " 1 3 6 " : " 1 3 5 ";
+
+    } else if (options?.maj7) {
+        valid_notes = " 1 3 5 7 ";
+
+    } else if (options?.maj9) {
+        valid_notes = " 1 3 5 7 2 ";
+
+    } else if (options?.majadd9) {
+        valid_notes = " 1 3 5 2 ";
+
+    } else if (options?.sus2) {
+        valid_notes = " 1 2 5 ";
+
+    } else if (options?.sus4) {
+        valid_notes = " 1 4 5 ";
+
     } else if (options.pentatonic || options.blues) {
         valid_notes = " 1 2 3 5 6 ";
     }

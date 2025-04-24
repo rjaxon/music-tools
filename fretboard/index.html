@@ -3,6 +3,7 @@
         <!--script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.26/Tone.js"></script-->
         <link rel="stylesheet" href="../fretboard/style.css">
         <script src="../fretboard/fretboard.js"></script>
+        <title id="title">fretboard</title>
     </head>
 
 
@@ -101,7 +102,42 @@
 
                 let paramList = window.location.hash.substring(1);
 
-                let args = getArgs(paramList);
+                let _args = getArgs(paramList);
+                let args = _args;
+
+                // url was: http://localhost:3000/music-tools/fretboard/#notes/C/blues
+                for (key in _args) {
+                    if (key.indexOf('/') > -1) {
+                        let sp = paramList.split('/');
+
+
+                        // notes | pattern | names
+                        args = {};
+                        if (sp[0].toLowerCase() === 'notes') {
+                            args.notes = true;
+                        } else if (sp[0].toLowerCase() === 'pattern') {
+                            args.pattern = true;
+                        } else if (sp[0].toLowerCase() === 'names') {
+                            args.names = true;
+                        }
+
+                        // Key
+                        if (sp.length > 1) {
+                            args.key = sp[1];
+                        }
+
+                        // blues | triads | {pending: maj7 min7 dom7 maj9 min9 majadd9 minadd9 sus2 sus4}
+                        if (sp.length > 2) {
+                            args[sp[2].toLowerCase()] = true;
+                        }
+
+                        break;
+                    }
+                }
+
+
+                let title = document.getElementById('title');
+                let blues = args.blues ? ' Blues' : '';
 
                 console.log(args);
                 clearNotes();
@@ -115,11 +151,16 @@
                     clear('fretboard-header');
                     clear('fretboard');
                     loadPatterns(args);
+
+                    title.innerHTML = `Fretboard Pattern ${args.key}${blues}`;
+
                 }
                 else {
                     clear('fretboard-header');
                     clear('fretboard');
                     loadNotes(args);
+
+                    title.innerHTML = `Fretboard Notes ${args.key}${blues}`;
                 }
             }
         }
