@@ -124,17 +124,30 @@ function drawPattern(s, index, keys, options) {
 
 
     if (notes) {
-        for (let fret = 0; fret < notes.length; ++fret) {
-            n = notes[fret];
+        for (let fret = 0; fret <= notes.length; ++fret) {
+            let n = notes[fret];
+            if (!n && fret == 16) {
+                let test = notes[4];
+                console.log(fret, 4, test, s);
+                n = notes[4];
+            }
             if (n) {
 
                 let valid_notes = getValidNotes(options, n);
 
+                let _fret = fret;
                 let note_plain = n.replace(/\d+/g, '');
                 let interval = 1 + keys.scale[k].indexOf(note_plain)
-                //if (valid_notes[interval + 1] == 'b') {
-                //    note_plain = note_plain + '.f';
-                //}
+                options.use_minor = false;
+                if (valid_notes[interval + 1] == 'b') {
+                    n = note_plain + '.f';
+                    _fret = fret - 1;
+                    if (_fret < 0) {
+                        continue;
+                    }
+                    options.use_minor = true;
+                    //debugger;
+                }
 
                 if (valid_notes.indexOf(interval) < 0) {
                     continue;
@@ -143,7 +156,9 @@ function drawPattern(s, index, keys, options) {
 
                 // console.log(s + ' ' + fret + ' ' + n );
 
-                addPatternItem(interval, s, fret, fretboard, null, options);
+                if (_fret < notes.length) {
+                    addPatternItem(interval, s, _fret, fretboard, null, n, options);
+                }
 
             }
         }
@@ -243,7 +258,8 @@ function getValidNotes(options) {
         valid_notes = " 6 1 3 5 7 ";
 
     } else if (options?.dom7) {
-        throw "Dominant 7th is not implemented";
+        valid_notes = " 1 3 5 7b ";
+        //throw "Dominant 7th is not implemented";
 
     } else if (options?.majadd9) {
         valid_notes = " 1 3 5 2 ";
@@ -272,7 +288,10 @@ function getValidNotes(options) {
     return valid_notes;
 }
 
-function addPatternItem(interval, s, fret, fretboard, render_override, options) {
+function addPatternItem(interval, s, fret, fretboard, render_override, note, options) {
+
+    let n = note;
+
     let tops = render_override?.tops || {
         "high-e": 28,
         "b": 63,
@@ -308,6 +327,11 @@ function addPatternItem(interval, s, fret, fretboard, render_override, options) 
     let _interval = interval;
     let minor_img = '';
     let minor_map = [-1, 3, 4, 5, 6, 7, 1, 2];
+
+    if (options?.use_minor) {
+        minor_img = 'minor/';
+    }
+
     if (options?.minor) {
         minor_img = 'minor/';
         _interval = minor_map[interval];
@@ -515,7 +539,7 @@ function init() {
 
 let strings = ['low-e', 'a', 'd', 'g', 'b', 'high-e'];
 
-function getNoteRelatives(key) {
+function getKeyRelative(key) {
 
     let relatives = {
         C: "a",

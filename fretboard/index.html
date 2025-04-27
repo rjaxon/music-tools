@@ -172,7 +172,7 @@
                     clear('fretboard');
                     loadPatterns(args);
 
-                    let key = args?.minor ? getNoteRelatives(args.key) : args.key;
+                    let key = args?.minor ? getKeyRelative(args.key) : args.key;
                     title.innerHTML = `Fretboard Pattern ${key}${blues}`;
 
                 }
