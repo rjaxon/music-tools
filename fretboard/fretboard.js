@@ -314,7 +314,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     span.style.position = 'absolute';
     span.style.top = `${tops[s]}px`;
     span.style.left = `${lefts[fret]}px`;
-    span.setAttribute('title', n.toUpperCase());
+    span.setAttribute('title', n?.toUpperCase() || '');
 
     let bg = document.createElement('span');
     bg.classList.add('pattern-bg');
