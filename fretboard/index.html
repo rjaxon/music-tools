@@ -162,6 +162,14 @@
                 console.log(args);
                 clearNotes();
 
+                if (args.triads) {
+                    args.chord = true;
+                }
+
+                if (!args.minor && !args.major) {
+                    args.major = true;
+                }
+
                 if (args.names) {
                     clear('fretboard-header');
                     clear('fretboard');
