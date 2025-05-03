@@ -109,10 +109,11 @@ function board_toggle_class(css_class, sender) {
         pattern_params += '&triads';
     }
 
-    // if(is_minor() ) {
-    //   params += '&minor';
-    //   pattern_params += '&minor';
-    // }
+    
+     if(current_key.classList.contains('selected-as-minor') ) {
+       //params += '&minor';
+       pattern_params += '&minor';
+     }
 
 
     let notes_frame = document.getElementById('notes_frame');
