@@ -184,9 +184,6 @@ div {
     background-image: url('./minor.png');
 }
 
-.hidden {
-  display: none;
-}
 
 .minor.pentatonic {
     background-position-y: -498px;

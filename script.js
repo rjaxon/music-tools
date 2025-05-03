@@ -132,7 +132,23 @@ function on_key_click_2(major_key, minor_key, sender) {
     let minor = document.getElementById('btn-minor');
     // let is_major = true;
     //if(minor.classList.contains('on')) {
-    if (is_minor()) {
+
+    console.log(`is minor: ${sender.classList.contains('selected-as-minor')}`);
+    console.log(`is selected: ${sender.classList.contains('selected')}`);
+
+    const is_selected = sender.classList.contains('selected');
+    let _is_minor = sender.classList.contains('selected-as-minor');
+
+    if (is_selected) {
+        if (_is_minor) {
+            sender.classList.remove('selected-as-minor');
+        } else {
+            sender.classList.add('selected-as-minor');
+        }
+    }
+    _is_minor = sender.classList.contains('selected-as-minor');
+
+    if (_is_minor) {
         //is_major = false;
         document.getElementById('major_header').classList.add('hidden');
         document.getElementById('minor_header').classList.remove('hidden');
@@ -142,13 +158,13 @@ function on_key_click_2(major_key, minor_key, sender) {
         document.getElementById('minor_header').classList.add('hidden');
     }
 
-    let _newkey = is_minor() ? minor_key : major_key;
+    let _newkey = _is_minor ? minor_key : major_key;
     if (keys[_newkey]) {
         let k = keys[_newkey].split(', ');
 
         // let pentatonic = document.getElementById('btn-pentatonic');
         // let is_5 = pentatonic.classList.contains('on');
-        update_scale_2(k, is_major(), is_pentatonic());
+        update_scale_2(k, false == _is_minor, is_pentatonic());
     }
 
 
@@ -169,7 +185,7 @@ function on_key_click_2(major_key, minor_key, sender) {
         pattern_params += '&triads';
     }
 
-    if (is_minor()) {
+    if (_is_minor) {
         params += '&minor';
         pattern_params += '&minor';
     }
@@ -186,7 +202,7 @@ function on_key_click_2(major_key, minor_key, sender) {
         previous.className = '';
 
     sender.classList.add('selected');
-    if (is_minor()) {
+    if (_is_minor) {
         sender.classList.add('selected-as-minor');
     }
 

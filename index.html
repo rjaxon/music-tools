@@ -9,6 +9,9 @@
       <script src="./script.js"></script>
    </head>
    <style>
+       .hidden {
+           display: none !important;
+       }
    </style>
    <body>
       <div>
@@ -22,7 +25,7 @@
       <div class="buttons">
          <div id="btn-pentatonic" onclick="board_toggle_class('pentatonic', this)"> Pentatonic </div>
          <div id="btn-triads" onclick="board_toggle_class('triads', this)"> Triads </div>
-         <div id="btn-minor" onclick="board_toggle_class('minor', this)"> Minor </div>
+         <div id="btn-minor" class="hidden" onclick="board_toggle_class('minor', this)"> Minor </div>
       </div>
       <div>
          <iframe id="pattern_frame" style=" border: 0px; width: 1083px; height: 278px; position: relative; left: 0px;"
@@ -81,21 +84,21 @@
          </div>
       </div>
       <div class="buttons keys ">
-         <div id="btn-c" onclick="on_key_click_2('c', 'am', this)"  major="c" minor="am" > C / a </div>
-         <div id="btn-g" onclick="on_key_click_2('g', 'em', this)"  major="g" minor="em" > G / e </div>
-         <div id="btn-d" onclick="on_key_click_2('d', 'bm', this)"  major="d" minor="bm" > D / b </div>
-         <div id="btn-a" onclick="on_key_click_2('a', 'fsm', this)" major="a" minor="fsm"> A / f&sharp; </div>
-         <div id="btn-e" onclick="on_key_click_2('e', 'csm', this)" major="e" minor="csm"> E / c&sharp; </div>
-         <div id="btn-b" onclick="on_key_click_2('b', 'gsm', this)" major="b" minor="gsm"> B / g&sharp; </div>
+          <div id="btn-c" onclick="on_key_click_2('c', 'am', this)" major="c" minor="am">   <span class="major_key">C</span> / <span class="minor_key">a</span> </div>
+          <div id="btn-g" onclick="on_key_click_2('g', 'em', this)" major="g" minor="em">   <span class="major_key">G</span> / <span class="minor_key">e</span> </div>
+          <div id="btn-d" onclick="on_key_click_2('d', 'bm', this)" major="d" minor="bm">   <span class="major_key">D</span> / <span class="minor_key">b</span> </div>
+          <div id="btn-a" onclick="on_key_click_2('a', 'fsm', this)" major="a" minor="fsm"> <span class="major_key">A</span> / <span class="minor_key">f&sharp;</span> </div>
+          <div id="btn-e" onclick="on_key_click_2('e', 'csm', this)" major="e" minor="csm"> <span class="major_key">E</span> / <span class="minor_key">c&sharp;</span> </div>
+          <div id="btn-b" onclick="on_key_click_2('b', 'gsm', this)" major="b" minor="gsm"> <span class="major_key">B</span> / <span class="minor_key">g&sharp;</span> </div>
       </div>
       <div class="buttons keys ">
-         <div id="btn-f"  onclick="on_key_click_2('f', 'dm', this)"  major="f" minor="dm" > F&natural; / d </div>
-         <!-- natural used because of odd rendering -->
-         <div id="btn-bf" onclick="on_key_click_2('bf', 'gm', this)"  major="bf" minor="gm" > B&flat; / g </div>
-         <div id="btn-ef" onclick="on_key_click_2('ef', 'cm', this)"  major="ef" minor="cm" > E&flat; / c </div>
-         <div id="btn-af" onclick="on_key_click_2('af', 'fm', this)"   major="af" minor="fm" > A&flat; / f </div>
-         <div id="btn-df" onclick="on_key_click_2('df', 'bfm', this)"  major="df" minor="bfm" > D&flat; / b&flat; </div>
-         <div id="btn-gf" onclick="on_key_click_2('gf', 'efm', this)"  major="gf" minor="efm" > G&flat; / e&flat; </div>
+          <div id="btn-f" onclick="on_key_click_2('f', 'dm', this)" major="f" minor="dm"> F&natural; / d </div>
+          <!-- natural used because of odd rendering -->
+          <div id="btn-bf" onclick="on_key_click_2('bf', 'gm', this)" major="bf" minor="gm">   <span class="major_key">B&flat;</span> / <span class="minor_key">g</span> </div>
+          <div id="btn-ef" onclick="on_key_click_2('ef', 'cm', this)" major="ef" minor="cm">   <span class="major_key">E&flat;</span> / <span class="minor_key">c</span> </div>
+          <div id="btn-af" onclick="on_key_click_2('af', 'fm', this)" major="af" minor="fm">   <span class="major_key">A&flat;</span> / <span class="minor_key">f</span> </div>
+          <div id="btn-df" onclick="on_key_click_2('df', 'bfm', this)" major="df" minor="bfm"> <span class="major_key">D&flat;</span> / <span class="minor_key">b&flat;</span> </div>
+          <div id="btn-gf" onclick="on_key_click_2('gf', 'efm', this)" major="gf" minor="efm"> <span class="major_key">G&flat;</span> / <span class="minor_key">e&flat;</span> </div>
       </div>
       <div>
          Drum Tracks from <a href="https://www.midnightdrummer.com/backing-drum-tracks/" target="_blank">midnightdrummer.com</a>
