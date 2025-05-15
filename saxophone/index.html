@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saxophone Material</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header, footer {
+            background-color: #eee;
+            padding: 1em;
+            text-align: center;
+        }
+        main {
+            margin: 2em 0;
+        }
+
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hidden">
+        <h1>Welcome to My Website</h1>
+    </header>
+
+    <main>
+        <h2>Materials</h2>
+
+        <img onclick="img_onclick(this);" src="chart.png"/>
+
+        <p>
+            <a href="25 Daily Exercises for Saxophone.pdf">25 Daily Exercises for Saxophone</a>
+        </p>
+        <p>
+            <a href="Jazz Exercises And Etudes for the Alto Saxophone.pdf">Jazz Exercises And Etudes for the Alto Saxophone</a>
+        </p>
+    </main>
+
+    <footer class="hidden">
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript">
+        function img_onclick(sender) {
+            console.log(sender);
+
+            if(sender.src.indexOf('-2') > 0) {
+                sender.src = sender.src.replace('-2', '');
+            } else {
+                sender.src = sender.src.replace('.png', '-2.png');
+            }
+        }
+    </script>
+</body>
+</html>
+
