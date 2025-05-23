@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harmonica Material</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        header, footer {
+            background-color: #eee;
+            padding: 1em;
+            text-align: center;
+        }
+        main {
+            margin: 2em 0;
+        }
+
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hidden">
+        <h1>Welcome to My Website</h1>
+    </header>
+
+    <main>
+        <h2>Materials</h2>
+
+        <img src="harmonica-intervals.png" />
+        <img src="harmonica-notes-c.png" />
+
+
+    </main>
+
+    <footer class="hidden">
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script type="text/javascript">
+        function img_onclick(sender) {
+            console.log(sender);
+
+            if(sender.src.indexOf('-3') > 0) {
+                sender.src = sender.src.replace('-3.png', '-4.png');
+            } else if(sender.src.indexOf('-4') > 0) {
+                sender.src = sender.src.replace('-4.png', '-5.png');
+            } else {
+                sender.src = sender.src.replace('-5.png', '-3.png');
+            }
+        }
+    </script>
+</body>
+</html>
+
