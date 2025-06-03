@@ -1,0 +1,37 @@
+
+.inline-block {
+    display: inline-block;
+}
+.inline {
+    display: inline;
+}
+
+.zoomout-30 {
+    transform: scale(0.3);
+    transform-origin: left top;
+    white-space: nowrap;
+}
+
+.image {
+    display: inline-block;
+    width: 125px;
+    height: 610px;
+    background-image: url(chart-2.png);
+    background-repeat: no-repeat;
+    background-position: 125px 560px;
+    border: 1px solid black;
+}
+
+.root {
+    border-color: red;
+}
+
+.grid {
+    /* border: 3px dashed black; */
+    padding: 2em;
+    margin: 1em;
+}
+
+.transparent {
+    opacity: 0.25;
+}
