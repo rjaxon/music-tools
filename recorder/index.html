@@ -190,7 +190,7 @@
                     <span class="image transparent grid-9 d"></span>
                 </div>
                 <div>
-                    <span class="image transparent grid-0 f"></span>
+                    <span class="image grid-0 f"></span>
                     <span class="image grid-1 fs root"></span>
                     <span class="image transparent grid-2 g"></span>
                     <span class="image grid-3 gs"></span>
@@ -216,7 +216,7 @@
                     <span class="image transparent grid-9 d"></span>
                 </div>
                 <div>
-                    <span class="image transparent grid-0 f"></span>
+                    <span class="image grid-0 f"></span>
                     <span class="image grid-1 fs root"></span>
                     <span class="image transparent grid-2 g"></span>
                     <span class="image grid-3 gs"></span>
@@ -241,7 +241,7 @@
                     <span class="image transparent grid-9 d"></span>
                 </div>
                 <div>
-                    <span class="image transparent grid-0 f"></span>
+                    <span class="image grid-0 f"></span>
                     <span class="image grid-1 fs root"></span>
                     <span class="image transparent grid-2 g"></span>
                     <span class="image grid-3 gs"></span>
@@ -276,15 +276,40 @@
             "f3", "fs3", "g3", "gs3", "a3", "as3", "b3", "c3"
         ];
 
+        function clear(container_id) {
+
+
+            const container = document.getElementById(container_id);
+            for (let i = 0; i < 15; ++i) {
+
+                let element = container.querySelector(`.grid-${i}`);
+
+                let isRoot = element.classList.contains('root');
+                let isTransparent = element.classList.contains('transparent');
+
+                element.className = `image grid-${i}`;
+                if (isRoot) {
+                    element.classList.add('root');
+                }
+                if (isTransparent) {
+                    element.classList.add('transparent');
+                }
+            }
+
+        }
+
         function load_pattern(container_id, root_note) {
+
+            clear(container_id);
 
             if (container_id == null || root_note == null) {
                 console.log(`container_id null: ${container_id == null} root_note null: ${root_note == null}`);
+
                 return;
             }
 
             let start = _notes.indexOf(root_note);
-            console.log(start);
+            //console.log(start);
             //if(start >= 1) {
                 start -= 1;
             //}
@@ -294,18 +319,18 @@
 
                 let element = container.querySelector(`.grid-${i}`);
                 let current = i + start;
-                let isRoot = element.classList.contains('root');
-                let isTransparent = element.classList.contains('transparent');
-                console.log(element.className);
-                element.className = `image grid-${i}`;
-                if (isRoot) {
-                    element.classList.add('root');
-                }
-                if (isTransparent) {
-                    element.classList.add('transparent');
-                }
+                //let isRoot = element.classList.contains('root');
+                //let isTransparent = element.classList.contains('transparent');
+                ////console.log(element.className);
+                //element.className = `image grid-${i}`;
+                //if (isRoot) {
+                //    element.classList.add('root');
+                //}
+                //if (isTransparent) {
+                //    element.classList.add('transparent');
+                //}
                 if(0 <= current && current < _notes.length) {
-                    console.log(i, current, _notes[current], element);
+                    //console.log(i, current, _notes[current], element);
                     element.classList.add(_notes[current]);
                     element.setAttribute('title', _notes[current]);
                 }
@@ -321,10 +346,62 @@
         }
 
 
-        let note = 'f';
-        load_pattern('grid-1', note);
-        load_pattern('grid-2', getNote(_notes.indexOf(note) + 12));
-        load_pattern('grid-3', getNote(_notes.indexOf(note) + 24));
+        function onHashChange() {
+            // console.log('Hash changed to: ' + window.location.hash);
+
+            if (window.location.hash.length > 1) {
+
+                let paramList = window.location.hash.substring(1);
+
+                let _args = getArgs(paramList);
+                let args = _args;
+
+
+                if (args.key) {
+                    let note = args.key;
+                    load_pattern('grid-1', note);
+                    load_pattern('grid-2', getNote(_notes.indexOf(note) + 12));
+                    load_pattern('grid-3', getNote(_notes.indexOf(note) + 24));
+                }
+
+
+                console.log(args);
+            }
+        }
+
+        function getArgs(urlParams) {
+            let args = {};
+
+            //if (urlParams.length > 1) {
+
+            //    let paramList = urlParams.split('&');
+
+            //    paramList.forEach((p) => {
+            //        let _arg = p.split('=');
+            //        let arg = _arg[0].toLowerCase();
+            //        let val = _arg[1] || true;
+            //        args[arg] = val;
+            //    });
+            //}
+
+            args.key = urlParams;
+
+            return args;
+        }
+
+        function onLoad() {
+
+
+
+            if (window.location.hash.length > 1) {
+                onHashChange();
+            }
+
+            window.addEventListener('hashchange', onHashChange);
+        }
+
+
+        onLoad();
     </script>
 </body>
 </html>
