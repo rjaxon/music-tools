@@ -298,6 +298,31 @@
 
         }
 
+        function load_pattern_2(container_id, root_note_index) {
+
+            clear(container_id);
+
+            if (container_id == null || root_note_index == null) {
+                console.log(`container_id null: ${container_id == null} root_note_index null: ${root_note_index == null}`);
+
+                return;
+            }
+
+            let start = root_note_index;
+            start -= 1;
+
+            const container = document.getElementById(container_id);
+            for (let i = 0; i < 15; ++i) {
+
+                let element = container.querySelector(`.grid-${i}`);
+                let current = i + start;
+                if (0 <= current && current < _notes.length) {
+                    element.classList.add(_notes[current]);
+                    element.setAttribute('title', _notes[current]);
+                }
+            }
+        }
+
         function load_pattern(container_id, root_note) {
 
             clear(container_id);
@@ -359,9 +384,13 @@
 
                 if (args.key) {
                     let note = args.key;
-                    load_pattern('grid-1', note);
-                    load_pattern('grid-2', getNote(_notes.indexOf(note) + 12));
-                    load_pattern('grid-3', getNote(_notes.indexOf(note) + 24));
+                    //load_pattern('grid-1', note);
+                    //load_pattern('grid-2', getNote(_notes.indexOf(note) + 12));
+                    //load_pattern('grid-3', getNote(_notes.indexOf(note) + 24));
+
+                    load_pattern_2('grid-1', _notes.indexOf(note) - 12);
+                    load_pattern_2('grid-2', _notes.indexOf(note) );
+                    load_pattern_2('grid-3', _notes.indexOf(note) + 12);
                 }
 
 
