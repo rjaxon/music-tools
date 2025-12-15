@@ -162,7 +162,7 @@ function drawPattern(s, index, keys, options) {
 
                     addPatternItem(interval, s, _fret, fretboard, null, n, options);
 
-                    if (interval == 3 && _fret > 1) {
+                    if (options.blues && interval == 3 && _fret > 1) {
                         console.log('blue note?', note_plain);
                         options.blue_note = true;
                         addPatternItem(interval, s, _fret - 1, fretboard, null, n, options);
