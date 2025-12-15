@@ -138,6 +138,7 @@ function drawPattern(s, index, keys, options) {
                 let _fret = fret;
                 let note_plain = n.replace(/\d+/g, '');
                 let interval = 1 + keys.scale[k].indexOf(note_plain)
+
                 options.use_minor = false;
                 if (valid_notes[interval + 1] == 'b') {
                     n = note_plain + '.f';
@@ -157,7 +158,15 @@ function drawPattern(s, index, keys, options) {
                 // console.log(s + ' ' + fret + ' ' + n );
 
                 if (_fret < notes.length) {
+                    options.blue_note = false;
+
                     addPatternItem(interval, s, _fret, fretboard, null, n, options);
+
+                    if (interval == 3 && _fret > 1) {
+                        console.log('blue note?', note_plain);
+                        options.blue_note = true;
+                        addPatternItem(interval, s, _fret - 1, fretboard, null, n, options);
+                    }
                 }
 
             }
@@ -338,6 +347,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     }
 
     let color = '';
+
     if (!options?.minor) {
         if (_interval == 1) {
             color = '-red';
@@ -354,10 +364,15 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
 
     //let minor = options?.minor ? 'minor/' : '';
     let img_url = `../svg/${minor_img}number${_interval}${color}.svg`;
-    // if(render_override) 
+    // if(render_override)
     //   img.src = render_override.img_url || img_url;
     // else
     //   img.src = img_url;
+
+
+    if (options?.blue_note) {
+        img_url = `../svg/blue-note.svg`;
+    }
 
     img.src = render_override?.img_url || img_url;
 
