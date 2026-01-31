@@ -160,6 +160,48 @@
                 let blues = args.blues ? ' Blues' : '';
 
                 console.log(args);
+
+                if (args.key.indexOf('m') > -1) {
+
+                    let getRelativeMajor = (k) => {
+                        console.log('getRelativeMajor', k);
+
+                        let min = {
+                            'am': 'C',
+                            'em': 'G',
+                            'bm': 'D',
+                            'fsm': 'A',
+                            'csm': 'E',
+                            'gsm': 'B',
+                            'dm': 'F',
+                            'gm': 'Bf',
+                            'cm': 'Ef',
+                            'fm': 'Af',
+                            'bfm': 'Df',
+                            'efm': 'Gf'
+                            };
+
+                        return min[k.toLowerCase()];
+                    };
+
+
+                    args.minor = true;
+
+                    try {
+                        args.key = getRelativeMajor(args.key);
+                        if (!args.key) {
+                            console.log('Invalid minor key');
+                            args.minor = false;
+                            args.key = null;
+                        }
+                    } catch (e) {
+                        console.log(e);
+                        args.minor = false;
+                        args.key = null;
+                    }
+                }
+
+
                 clearNotes();
 
                 if (args.triads) {
