@@ -151,11 +151,15 @@ function on_key_click_2(major_key, minor_key, sender) {
 
     if (_is_minor) {
         //is_major = false;
+        document.getElementById('major_solfege').classList.add('hidden');
         document.getElementById('major_header').classList.add('hidden');
+        document.getElementById('minor_solfege').classList.remove('hidden');
         document.getElementById('minor_header').classList.remove('hidden');
     }
     else {
+        document.getElementById('major_solfege').classList.remove('hidden');
         document.getElementById('major_header').classList.remove('hidden');
+        document.getElementById('minor_solfege').classList.add('hidden');
         document.getElementById('minor_header').classList.add('hidden');
     }
 
