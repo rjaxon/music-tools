@@ -63,6 +63,10 @@
     top: 5px;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 
 .reduce90 {
     transform: scale(0.80);
