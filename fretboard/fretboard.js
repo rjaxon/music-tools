@@ -332,6 +332,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     let img = document.createElement('img');
     img.setAttribute('width', '42');
     img.style.position = 'absolute';
+    img.setAttribute('onclick', 'onNoteClick(this);');
 
     let _interval = interval;
     let minor_img = '';
@@ -552,6 +553,39 @@ function init() {
 
 }
 
+let _synth = null;
+function fretTone() {
+    if (_synth == null) {
+        console.log('new Tone.Synth().toDestination();');
+        _synth = new Tone.Synth().toDestination();
+    }
+
+    return _synth;
+}
+
+function onNoteClick(sender) {
+    let note = sender?.parentElement?.title;
+
+    if (note) {
+
+        let noteToPlay = note;
+        if (note.indexOf('.') > -1) {
+            let sharp = note.substr(note.indexOf('.') + 1) == 'S';
+            let flat = note.substr(note.indexOf('.') + 1) == 'F';
+
+
+            noteToPlay = `${note.substr(0, note.indexOf('.'))[0]}${sharp ? '#' : 'b'}${Number(note.substr(0, note.indexOf('.'))[1]) + 1}`;
+        } else {
+            noteToPlay = `${note[0]}${Number(note[1]) + 1}`;
+        }
+
+
+        console.log('noteToPlay', noteToPlay);
+
+        fretTone().triggerAttackRelease(noteToPlay, "8n");
+    }
+}
+
 let strings = ['low-e', 'a', 'd', 'g', 'b', 'high-e'];
 
 function getKeyRelative(key) {
@@ -599,12 +633,12 @@ function getNoteData() {
     key.scale.C = [ 'c', 'd', 'e', 'f', 'g', 'a', 'b' ];
     key.board.C = [
     /*------,-------,-------,---3---,-------,---5---,-------,---7---,-------,---9---,-------,-------,--12---,-------,-------,-------,*/
-    [   'e3',   'f3',      0,   'g3',      0,   'a3',      0,   'b3',    'c3',     0,   'd3',      0,   'e4',   'f4',      0,  'g4' ],                     
-    [   'b2',   'c2',      0,   'd2',      0,   'e3',   'f3',      0,    'g3',     0,   'a3',      0,   'b3',   'c3',      0,  'd3' ],                     
-    [   'g2',      0,   'a2',      0,   'b2',   'c2',      0,   'd2',       0,  'e3',   'f3',      0,   'g3',      0,   'a3',     0 ],
-    [   'd1',      0,   'e2',   'f2',      0,   'g2',      0,   'a2',       0,  'b2',   'c2',      0,   'd2',      0,   'e3',  'f3' ],
-    [   'a1',      0,   'b1',   'c1',      0,   'd1',      0,   'e2',    'f2',     0,   'g2',      0,   'a2',      0,   'b2',  'c2' ],
-    [   'e1',   'f1',      0,   'g1',      0,   'a1',      0,   'b1',    'c1',     0,   'd1',      0,   'e2',   'f2',      0,  'g2' ],
+    [   'e3',   'f3',      0,   'g3',      0,   'a3',      0,   'b3',    'c4',     0,   'd4',      0,   'e4',   'f4',      0,  'g4' ],                     
+    [   'b2',   'c3',      0,   'd3',      0,   'e3',   'f3',      0,    'g3',     0,   'a3',      0,   'b3',   'c4',      0,  'd4' ],                     
+    [   'g2',      0,   'a2',      0,   'b2',   'c3',      0,   'd3',       0,  'e3',   'f3',      0,   'g3',      0,   'a3',     0 ],
+    [   'd2',      0,   'e2',   'f2',      0,   'g2',      0,   'a2',       0,  'b2',   'c3',      0,   'd3',      0,   'e3',  'f3' ],
+    [   'a1',      0,   'b1',   'c2',      0,   'd2',      0,   'e2',    'f2',     0,   'g2',      0,   'a2',      0,   'b2',  'c3' ],
+    [   'e1',   'f1',      0,   'g1',      0,   'a1',      0,   'b1',    'c2',     0,   'd2',      0,   'e2',   'f2',      0,  'g2' ],
     ];
     
     key.scale.G = [ 'g', 'a', 'b', 'c', 'd', 'e', 'f.s' ];
