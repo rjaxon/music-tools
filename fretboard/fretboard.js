@@ -323,7 +323,32 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     span.style.position = 'absolute';
     span.style.top = `${tops[s]}px`;
     span.style.left = `${lefts[fret]}px`;
-    span.setAttribute('title', n?.toUpperCase() || '');
+    let noteName = n?.toUpperCase();
+    if (options.blue_note) {
+
+        let n0 = noteName[0];
+        let n1 = noteName[1];
+
+        if (noteName.indexOf('.') > -1) {
+            if (noteName[3] == 'S') {
+                noteName = `${n0}${n1}`;
+            } else {
+                let names = "ABCDEFG";
+                if (names.indexOf(n0) == 0) {
+                    n0 = names[names.length - 1];
+                } else {
+                    n0 = names[names.indexOf(n0) - 1];
+                }
+                noteName = `${n0}${n1}`;
+            }
+
+        } else {
+            noteName = `${n0}${n1}.F`;
+        }
+
+        console.log('noteName - blueNote', noteName);
+    }
+    span.setAttribute('title',  noteName || '');
 
     let bg = document.createElement('span');
     bg.classList.add('pattern-bg');
