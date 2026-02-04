@@ -559,22 +559,34 @@ function addNote(string, note, fret, accidental /*1 sharp, 2 flat, 3 natural */ 
     }
 }
 
-// TODO: lookup tone.js
-// function playTone() {
-//     const synth = new Tone.Synth().toDestination();
-//     synth.triggerAttackRelease("C4", "8n"); // Play middle C for an eighth note
-// }
-
 
 function init() {
     let controls = document.getElementsByTagName('my-notes-fretboard');
 
-    for (let i = 0; i < controls.length; ++i) {
+    for (let i = 0; i < controls.length && i < 1; ++i) {
         let c = controls[i];
         let parent = c.parentNode;
         let div = document.createElement('div');
         div.innerHTML = '<!-- control to add html to be implemented -->';
-        parent.replaceChild(div, c);
+
+        let div_comment = document.createElement('div');
+        div_comment.innerHTML = '<!-- control <my-notes-fretboard></my-notes-fretboard> replaced -->';
+
+        let div_header = document.createElement('div');
+        div_header.setAttribute('style', 'position: relative;height: 10px; width: 942px;');
+        div_header.id = 'fretboard-header';
+
+        let div_fretboard = document.createElement('div');
+        div_fretboard.setAttribute('style', 'position: relative; padding-top: 3em;');
+        div_fretboard.id = 'fretboard';
+
+        let container = document.createElement('div');
+        container.appendChild(div_comment);
+        container.appendChild(div_header);
+        container.appendChild(div_fretboard);
+
+
+        parent.replaceChild(container, c);
     }
 
 }
