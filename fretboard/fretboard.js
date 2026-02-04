@@ -324,7 +324,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     span.style.top = `${tops[s]}px`;
     span.style.left = `${lefts[fret]}px`;
     let noteName = n?.toUpperCase();
-    if (options.blue_note) {
+    if (options?.blue_note) {
 
         let n0 = noteName[0];
         let n1 = noteName[1];
