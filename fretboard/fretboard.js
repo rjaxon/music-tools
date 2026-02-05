@@ -361,7 +361,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     let img = document.createElement('img');
     img.setAttribute('width', '42');
     img.style.position = 'absolute';
-    if(fretboard_enable_tone) {
+    if(options?.pattern && fretboard_enable_tone) {
         img.setAttribute('onclick', 'onNoteClick(this);');
         img.classList.add('pointer');
     }
