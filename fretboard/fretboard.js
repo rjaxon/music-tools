@@ -414,6 +414,7 @@ function addNote(string, note, fret, accidental /*1 sharp, 2 flat, 3 natural */ 
 
     let notes = {
         // [ top, 
+        //      --- below:  create the aditional bars above or below the staff ---
         //   bar {1: low-1, 2: low-2, 3: low-3, 4: high-1, 5: high-2, 6: high-3},
         // ]
         e1: [66, 3],
@@ -429,16 +430,16 @@ function addNote(string, note, fret, accidental /*1 sharp, 2 flat, 3 natural */ 
         g2: [30, 0],
         a2: [26, 0],
         b2: [22, 0],
-        c2: [18, 0],
-        d2: [14, 0],
+        c2: [46, 1],
+        d2: [42, 0],
 
         e3: [10, 0],
         f3: [6, 0],
         g3: [2, 0],
         a3: [-1, 4],
         b3: [-5, 4],
-        c3: [-8, 5],
-        d3: [-12, 5],
+        c3: [18, 0],
+        d3: [14, 0],
 
         e4: [-16, 6],
         f4: [-20, 6],
