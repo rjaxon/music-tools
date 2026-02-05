@@ -1,3 +1,7 @@
+
+fretboard_img_url_root = '../';
+fretboard_enable_tone = true;
+
 function clear(id) {
     let parent = document.getElementById(id);
     while (parent && parent.firstChild) {
@@ -56,7 +60,7 @@ function drawFret() {
         img.style.top = `${(top || -10)}px`;
         img.style.left = `${left}px`;
         img.style.width = '50px';
-        img.src = '../svg/dot-single.svg';
+        img.src = `${fretboard_img_url_root}svg/dot-single.svg`;
         return img;
     }
 
@@ -81,7 +85,7 @@ function drawFret() {
 
     let fb = document.getElementById('fretboard');
     let bg = document.createElement('img');
-    bg.src = '../svg/my-fretboard-bg.svg';
+    bg.src = `${fretboard_img_url_root}svg/my-fretboard-bg.svg`;
 
     div.appendChild(bg);
     fb.appendChild(div);
@@ -357,8 +361,10 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     let img = document.createElement('img');
     img.setAttribute('width', '42');
     img.style.position = 'absolute';
-    img.setAttribute('onclick', 'onNoteClick(this);');
-    img.classList.add('pointer');
+    if(fretboard_enable_tone) {
+        img.setAttribute('onclick', 'onNoteClick(this);');
+        img.classList.add('pointer');
+    }
 
     let _interval = interval;
     let minor_img = '';
@@ -390,7 +396,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
     }
 
     //let minor = options?.minor ? 'minor/' : '';
-    let img_url = `../svg/${minor_img}number${_interval}${color}.svg`;
+    let img_url = `${fretboard_img_url_root}svg/${minor_img}number${_interval}${color}.svg`;
     // if(render_override)
     //   img.src = render_override.img_url || img_url;
     // else
@@ -398,7 +404,7 @@ function addPatternItem(interval, s, fret, fretboard, render_override, note, opt
 
 
     if (options?.blue_note) {
-        img_url = `../svg/blue-note.svg`;
+        img_url = `${fretboard_img_url_root}svg/blue-note.svg`;
     }
 
     img.src = render_override?.img_url || img_url;
@@ -464,7 +470,7 @@ function addNote(string, note, fret, accidental /*1 sharp, 2 flat, 3 natural */ 
             let createExtra = function(left, top) {
                 let extra = document.createElement('img');
                 extra.style.position = 'absolute';
-                extra.src = '../svg/my-staff-bar.svg';
+                extra.src = `${fretboard_img_url_root}svg/my-staff-bar.svg`;
                 if (left)
                     extra.style.left = `${left}px`;
                 if (top)
@@ -529,13 +535,13 @@ function addNote(string, note, fret, accidental /*1 sharp, 2 flat, 3 natural */ 
         }
 
         let img = document.createElement('img');
-        img.src = '../svg/my-note.svg';
+        img.src = `${fretboard_img_url_root}svg/my-note.svg`;
         switch (interval) {
             case 1:
-                img.src = '../svg/my-note-red.svg';
+                img.src = `${fretboard_img_url_root}svg/my-note-red.svg`;
                 break;
             case 6:
-                img.src = '../svg/my-note-green.svg';
+                img.src = `${fretboard_img_url_root}svg/my-note-green.svg`;
                 break;
         }
         img.classList.add('note');
@@ -582,6 +588,7 @@ function init() {
         div_fretboard.id = 'fretboard';
 
         let container = document.createElement('div');
+        container.classList.add('fretboard-container');
         container.appendChild(div_comment);
         container.appendChild(div_header);
         container.appendChild(div_fretboard);
