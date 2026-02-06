@@ -575,9 +575,11 @@ function init() {
         let parent = c.parentNode;
         let div = document.createElement('div');
         div.innerHTML = '<!-- control to add html to be implemented -->';
+        div.id = 'fretboard-title';
 
-        let div_comment = document.createElement('div');
-        div_comment.innerHTML = '<!-- control <my-notes-fretboard></my-notes-fretboard> replaced -->';
+        let div_title = document.createElement('div');
+        div_title.innerHTML = '<!-- control <my-notes-fretboard></my-notes-fretboard> replaced -->';
+        div_title.id = 'fretboard-title';
 
         let div_header = document.createElement('div');
         div_header.setAttribute('style', 'position: relative;height: 10px; width: 942px;');
@@ -589,7 +591,8 @@ function init() {
 
         let container = document.createElement('div');
         container.classList.add('fretboard-container');
-        container.appendChild(div_comment);
+        container.id = `fretboard-container-${i+1}`;
+        container.appendChild(div_title);
         container.appendChild(div_header);
         container.appendChild(div_fretboard);
 
@@ -654,9 +657,13 @@ function getKeyRelative(key) {
         e: "G",
         b: "D",
         fs: "A",
+        'f.s': "A",
         cs: "E",
+        'c.s': 'E',
         gs: "B",
+        'g.s': "B",
         d: "F",
+        'd.s': "F",
         g: "Bf",
         c: "Ef",
         f: "Af",
