@@ -1,6 +1,6 @@
 
 fretboard_img_url_root = '../';
-fretboard_enable_tone = true;
+fretboard_enable_tone = false;
 
 function clear(id) {
     let parent = document.getElementById(id);
