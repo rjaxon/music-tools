@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diatonic Harmonica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2em;
+            background-color: #f9f9f9;
+            color: #333;
+            font-weight: bold;
+            font-size: 2em;
+            caret-color: transparent;
+        }
+
+        header, footer {
+            background-color: #eee;
+            padding: 1em;
+            text-align: center;
+        }
+
+        main {
+            margin: 2em 0;
+        }
+
+
+        .hidden {
+            display: none !important;
+        }
+
+        .align-right {
+            text-align: right !important;
+        }
+
+        .align-left {
+            text-align: left !important;
+        }
+
+        .bg-color-blue {
+            background-color:#9cf4ff !important;
+        }
+
+        table#diagram {
+        }
+
+        td {
+            text-align: center;
+            border: 2px solid;
+            width: 70px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        td.no-border {
+            border: none;
+        }
+
+        tr#hole-num td {
+            color: #CCC;
+        }
+
+        tr#blow-num td {
+            background-color: #90ee90;
+        }
+        tr#draw-num td {
+            background-color: #90ee90;
+        }
+
+        .root {
+            background-color: #ff8c8c !important;
+        }
+
+        .chord-tone {
+            background-color: #ffc46e !important;
+        }
+
+    </style>
+</head>
+<body onload="onLoad()">
+
+    <table id="diagram">
+
+        <tr id="blow-num">
+            <td>
+                Blow
+            </td>
+            <td id="blow-hole-1"  class="hole-1">1</td>
+            <td id="blow-hole-2"  class="hole-2">3</td>
+            <td id="blow-hole-3"  class="hole-3">5</td>
+            <td id="blow-hole-4"  class="hole-4">1</td>
+            <td id="blow-hole-5"  class="hole-5">3</td>
+            <td id="blow-hole-6"  class="hole-6">5</td>
+            <td id="blow-hole-7"  class="hole-7">1</td>
+            <td id="blow-hole-8"  class="hole-8">3</td>
+            <td id="blow-hole-9"  class="hole-9">5</td>
+            <td id="blow-hole-10" class="hole-10">1</td>
+        </tr>
+
+        <tr id="hole-num">
+            <td class="no-border">
+                &nbsp;
+            </td>
+            <td class="hole-1 no-border">1 </td>
+            <td class="hole-2 no-border">2 </td>
+            <td class="hole-3 no-border">3 </td>
+            <td class="hole-4 no-border">4 </td>
+            <td class="hole-5 no-border">5 </td>
+            <td class="hole-6 no-border">6 </td>
+            <td class="hole-7 no-border">7 </td>
+            <td class="hole-8 no-border">8 </td>
+            <td class="hole-9 no-border">9 </td>
+            <td class="hole-10 no-border">10</td>
+        </tr>
+
+
+        <tr id="draw-num">
+            <td>
+                Draw
+            </td>
+            <td id="draw-hole-1"  class="hole-1">2</td>
+            <td id="draw-hole-2"  class="hole-2">5</td>
+            <td id="draw-hole-3"  class="hole-3">7</td>
+            <td id="draw-hole-4"  class="hole-4">2</td>
+            <td id="draw-hole-5"  class="hole-5">4</td>
+            <td id="draw-hole-6"  class="hole-6">6</td>
+            <td id="draw-hole-7"  class="hole-7">7</td>
+            <td id="draw-hole-8"  class="hole-8">2</td>
+            <td id="draw-hole-9"  class="hole-9">4</td>
+            <td id="draw-hole-10" class="hole-10">6</td>
+        </tr>
+
+        <tr id="bend-draw-1">
+            <td class="no-border">
+                &nbsp;
+            </td>
+            <td id="draw-bend-1-hole-1"   class="hole-1 bg-color-blue">&flat;2</td>
+            <td id="draw-bend-1-hole-2"   class="hole-2 bg-color-blue">&flat;5</td>
+            <td id="draw-bend-1-hole-3"   class="hole-3 bg-color-blue">&flat;7</td>
+            <td id="draw-bend-1-hole-4"   class="hole-4 bg-color-blue">&flat;2</td>
+            <td id="draw-bend-1-hole-5"   class="hole-5 no-border"></td>
+            <td id="draw-bend-1-hole-6"   class="hole-6 bg-color-blue">&flat;6</td>
+            <td id="draw-bend-1-hole-7"   class="hole-7 no-border"></td>
+            <td id="draw-bend-1-hole-8"   class="hole-8 no-border"></td>
+            <td id="draw-bend-1-hole-9"   class="hole-9 no-border"></td>
+            <td id="draw-bend-1-hole-10"  class="hole-10 no-border"></td>
+        </tr>
+
+        <tr id="bend-draw-2">
+            <td class="no-border">
+                &nbsp;
+            </td>
+            <td id="draw-bend-2-hole-1"   class="hole-1 no-border"></td>
+            <td id="draw-bend-2-hole-2"   class="hole-2 bg-color-blue">4</td>
+            <td id="draw-bend-2-hole-3"   class="hole-3 bg-color-blue">6</td>
+            <td id="draw-bend-2-hole-4"   class="hole-4 no-border"></td>
+            <td id="draw-bend-2-hole-5"   class="hole-5 no-border"></td>
+            <td id="draw-bend-2-hole-6"   class="hole-6 no-border"></td>
+            <td id="draw-bend-2-hole-7"   class="hole-7 no-border"></td>
+            <td id="draw-bend-2-hole-8"   class="hole-8 no-border"></td>
+            <td id="draw-bend-2-hole-9"   class="hole-9 no-border"></td>
+            <td id="draw-bend-2-hole-10"  class="hole-10 no-border"></td>
+        </tr>
+
+        <tr id="bend-draw-3">
+            <td class="no-border">
+                &nbsp;
+            </td>
+            <td id="draw-bend-3-hole-1"   class="hole-1 no-border"></td>
+            <td id="draw-bend-3-hole-2"   class="hole-2 no-border"></td>
+            <td id="draw-bend-3-hole-3"   class="hole-3 bg-color-blue">&flat;6</td>
+            <td id="draw-bend-3-hole-4"   class="hole-4 no-border"></td>
+            <td id="draw-bend-3-hole-5"   class="hole-5 no-border"></td>
+            <td id="draw-bend-3-hole-6"   class="hole-6 no-border"></td>
+            <td id="draw-bend-3-hole-7"   class="hole-7 no-border"></td>
+            <td id="draw-bend-3-hole-8"   class="hole-8 no-border"></td>
+            <td id="draw-bend-3-hole-9"   class="hole-9 no-border"></td>
+            <td id="draw-bend-3-hole-10"  class="hole-10 no-border"></td>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+
+        function loadPosition(_num) {
+            let num = _num;
+            if (!_num) num = 1;
+            //  1  2  3  4  5  6  7  1
+            //  C  D  E  F  G  A  B  C
+            //  4  5  6 b7  1  2  3  4
+            // b7  1  2 b3  4  5  6 b7
+
+
+            // G A B  C D E F# G
+            // D E F# G A B C# D
+            // 2 3 b3 4 5 6 b7 2
+            let data = [
+                0,
+                {   'note': 'Position 1',
+                    'blow':        [0,  '1',   '3',  '5',  '1', '3',  '5', '1', '3', '5', '1'],
+                    'draw':        [0,  '2',   '5',  '7',  '2', '4',  '6', '7', '2', '4', '6'],
+                    'draw-bend-1': [0, 'b2',  'b5', 'b7', 'b2',   0, 'b6',   0,   0,   0,   0],
+                    'draw-bend-2': [0,    0,   '4',  '6',    0,   0,    0,   0,   0,   0,   0],
+                    'draw-bend-3': [0,    0,     0, 'b6',    0,   0,    0,   0,   0,   0,   0],
+                },
+                {
+                    'note': 'Position 2',
+                    'blow':        [0,  '4',  '6',  '1',  '4',  '6',  '1', '4', '6',  '1', '4'],
+                    'draw':        [0,  '5',  '1',  '3',  '5', 'b7',  '2', '3', '5', 'b7', '2'],
+                    'draw-bend-1': [0, 'b5', 'b1', 'b3', 'b5',    0, 'b2',   0,   0,    0,   0],
+                    'draw-bend-2': [0,    0,  'b7', '2',    0,    0,    0,   0,   0,    0,   0],
+                    'draw-bend-3': [0,    0,    0, 'b2',    0,    0,    0,   0,   0,    0,   0],
+                },
+                {
+                    'note': 'Position 3',
+                    'blow':        [0,  'b7',  '2',  '4', 'b7',  '2',  '4', 'b7',  '2',  '4', 'b7'],
+                    'draw':        [0,   '1',  '4',  '6',  '1', 'b3',  '5',  '6',  '1', 'b3',  '5'],
+                    'draw-bend-1': [0,  'b1', 'b4', 'b6', 'b1',    0, 'b5',    0,    0,    0,    0],
+                    'draw-bend-2': [0,     0, 'b3',  '5',    0,    0,    0,    0,    0,    0,    0],
+                    'draw-bend-3': [0,     0,    0, 'b5',    0,    0,    0,    0,    0,    0,    0],
+                },
+            ];
+
+
+            if (num < 0 && num >= data.length) return;
+
+
+            if (!data[num]) return;
+
+            let r = data[num];
+
+            // console.log(r.note, r.blow, r.draw, r['draw-bend-1'], r['draw-bend-2'], r['draw-bend-3']);
+
+
+            if (r) {
+
+                let title = document.getElementsByTagName('title');
+                if (title.length > 0) {
+                    title[0].innerHTML = r.note;
+                }
+
+                for (let i = 1; i <= 10; ++i) {
+                    let blow = r.blow[i];
+                    if (!blow) continue;
+                    let draw = r.draw[i];
+                    if (!draw) continue;
+                    let draw_bend_1 = r['draw-bend-1'][i];
+                    let draw_bend_2 = r['draw-bend-2'][i];
+                    let draw_bend_3 = r['draw-bend-3'][i];
+
+                    let cell = document.getElementById(`blow-hole-${i}`);
+                    if (cell) {
+                        cell.classList.remove('root');
+                        cell.classList.remove('chord-tone');
+                        cell.innerHTML = blow.replace('b', '&flat;');
+                        if (cell.innerHTML == '1') cell.classList.add('root');
+                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                    }
+
+                    cell = document.getElementById(`draw-hole-${i}`);
+                    if (cell) {
+                        cell.classList.remove('root');
+                        cell.classList.remove('chord-tone');
+                        cell.innerHTML = draw.replace('b', '&flat;');
+                        if (cell.innerHTML == '1') cell.classList.add('root');
+                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                    }
+
+                    cell = document.getElementById(`draw-bend-1-hole-${i}`);
+                    if (cell && draw_bend_1) {
+                        cell.classList.remove('root');
+                        cell.classList.remove('chord-tone');
+                        cell.innerHTML = draw_bend_1.replace('b', '&flat;') || '&nbsp;';
+                        if (cell.innerHTML == '1') cell.classList.add('root');
+                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                    }
+
+                    cell = document.getElementById(`draw-bend-2-hole-${i}`);
+                    if (cell && draw_bend_2) {
+                        cell.classList.remove('root');
+                        cell.classList.remove('chord-tone');
+                        cell.innerHTML = draw_bend_2.replace('b', '&flat;') || '&nbsp;';
+                        if (cell.innerHTML == '1') cell.classList.add('root');
+                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                    }
+
+                    cell = document.getElementById(`draw-bend-3-hole-${i}`);
+                    if (cell && draw_bend_3) {
+                        cell.classList.remove('root');
+                        cell.classList.remove('chord-tone');
+                        cell.innerHTML = draw_bend_3.replace('b', '&flat;') || '&nbsp;';
+                        if (cell.innerHTML == '1') cell.classList.add('root');
+                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                    }
+                }
+            }
+        }
+
+        function onHashChange() {
+            if (window.location.hash.length > 1) {
+
+                let paramList = window.location.hash.substring(1);
+
+
+                let params = paramList.split('/');
+
+                console.log(params);
+
+                while (params.length > 0) {
+                    if (params[0].length == 0) {
+                        params.shift();
+                    } else {
+                        break;
+                    }
+                }
+
+                if (params.length > 1) {
+                    if (params[0].toLowerCase() == 'position') {
+                        try {
+                            loadPosition(Number(params[1]));
+                        } catch {
+                            loadPosition(1);
+                        }
+                    }
+                }
+            }
+
+        }
+
+
+        function onLoad() {
+
+
+            if (window.location.hash.length > 1) {
+                onHashChange();
+            }
+
+            window.addEventListener('hashchange', onHashChange);
+
+        }
+
+    </script>
+</body>
+
+
+</html>
