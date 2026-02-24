@@ -62,10 +62,10 @@
         }
 
         tr#blow-num td {
-            background-color: #90ee90;
+            background-color: #d0ffd0;
         }
         tr#draw-num td {
-            background-color: #90ee90;
+            background-color: #d0ffd0;
         }
 
         .root {
@@ -207,7 +207,7 @@
                     'note': 'Position 2',
                     'blow':        [0,  '4',  '6',  '1',  '4',  '6',  '1', '4', '6',  '1', '4'],
                     'draw':        [0,  '5',  '1',  '3',  '5', 'b7',  '2', '3', '5', 'b7', '2'],
-                    'draw-bend-1': [0, 'b5', 'b1', 'b3', 'b5',    0, 'b2',   0,   0,    0,   0],
+                    'draw-bend-1': [0, 'b5',  '7', 'b3', 'b5',    0, 'b2',   0,   0,    0,   0],
                     'draw-bend-2': [0,    0,  'b7', '2',    0,    0,    0,   0,   0,    0,   0],
                     'draw-bend-3': [0,    0,    0, 'b2',    0,    0,    0,   0,   0,    0,   0],
                 },
@@ -215,22 +215,25 @@
                     'note': 'Position 3',
                     'blow':        [0,  'b7',  '2',  '4', 'b7',  '2',  '4', 'b7',  '2',  '4', 'b7'],
                     'draw':        [0,   '1',  '4',  '6',  '1', 'b3',  '5',  '6',  '1', 'b3',  '5'],
-                    'draw-bend-1': [0,  'b1', 'b4', 'b6', 'b1',    0, 'b5',    0,    0,    0,    0],
+                    'draw-bend-1': [0,   '7',  '3', 'b6',  '7',    0, 'b5',    0,    0,    0,    0],
                     'draw-bend-2': [0,     0, 'b3',  '5',    0,    0,    0,    0,    0,    0,    0],
                     'draw-bend-3': [0,     0,    0, 'b5',    0,    0,    0,    0,    0,    0,    0],
                 },
             ];
 
 
-            if (num < 0 && num >= data.length) return;
+            if (num < 0 && num >= data.length)
+                num = 1;
 
 
-            if (!data[num]) return;
+            if (!data[num])
+                num = 1;
+
+            _position = num;
 
             let r = data[num];
 
             // console.log(r.note, r.blow, r.draw, r['draw-bend-1'], r['draw-bend-2'], r['draw-bend-3']);
-
 
             if (r) {
 
@@ -327,7 +330,7 @@
 
         }
 
-
+        let _position = 1;
         function onLoad() {
 
 
