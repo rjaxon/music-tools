@@ -182,7 +182,8 @@
 
     <script type="text/javascript">
 
-        function loadPosition(_num) {
+        function loadPosition(_num, _use_solfege) {
+            let use_solfege = _use_solfege || false;
             let num = _num;
             if (!_num) num = 1;
             //  1  2  3  4  5  6  7  1
@@ -221,6 +222,22 @@
                 },
             ];
 
+            let solfege = {
+                '0': 0,
+                '1': 'do',
+                'b2': 'ri',
+                '2': 're',
+                'b3': 'me',
+                '3': 'mi',
+                '4': 'fa',
+                'b5': 'se',
+                '5': 'sol',
+                'b6': 'le',
+                '6': 'la',
+                'b7': 'te',
+                '7': 'ti'
+            }
+
 
             if (num < 0 && num >= data.length)
                 num = 1;
@@ -251,13 +268,21 @@
                     let draw_bend_2 = r['draw-bend-2'][i];
                     let draw_bend_3 = r['draw-bend-3'][i];
 
+                    if (use_solfege) {
+                        blow = solfege[blow];
+                        draw = solfege[draw];
+                        draw_bend_1 = solfege[draw_bend_1];
+                        draw_bend_2 = solfege[draw_bend_2];
+                        draw_bend_3 = solfege[draw_bend_3];
+                    }
+
                     let cell = document.getElementById(`blow-hole-${i}`);
                     if (cell) {
                         cell.classList.remove('root');
                         cell.classList.remove('chord-tone');
                         cell.innerHTML = blow.replace('b', '&flat;');
-                        if (cell.innerHTML == '1') cell.classList.add('root');
-                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                        if ('_1_do_'.indexOf(cell.innerHTML) > -1) cell.classList.add('root');
+                        if ('_3_5_mi_sol_'.indexOf(cell.innerHTML) > -1) cell.classList.add('chord-tone');
                     }
 
                     cell = document.getElementById(`draw-hole-${i}`);
@@ -265,8 +290,8 @@
                         cell.classList.remove('root');
                         cell.classList.remove('chord-tone');
                         cell.innerHTML = draw.replace('b', '&flat;');
-                        if (cell.innerHTML == '1') cell.classList.add('root');
-                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                        if ('_1_do_'.indexOf(cell.innerHTML) > -1) cell.classList.add('root');
+                        if ('_3_5_mi_sol_'.indexOf(cell.innerHTML) > -1) cell.classList.add('chord-tone');
                     }
 
                     cell = document.getElementById(`draw-bend-1-hole-${i}`);
@@ -274,8 +299,8 @@
                         cell.classList.remove('root');
                         cell.classList.remove('chord-tone');
                         cell.innerHTML = draw_bend_1.replace('b', '&flat;') || '&nbsp;';
-                        if (cell.innerHTML == '1') cell.classList.add('root');
-                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                        if ('_1_do_'.indexOf(cell.innerHTML) > -1) cell.classList.add('root');
+                        if ('_3_5_mi_sol_'.indexOf(cell.innerHTML) > -1) cell.classList.add('chord-tone');
                     }
 
                     cell = document.getElementById(`draw-bend-2-hole-${i}`);
@@ -283,8 +308,8 @@
                         cell.classList.remove('root');
                         cell.classList.remove('chord-tone');
                         cell.innerHTML = draw_bend_2.replace('b', '&flat;') || '&nbsp;';
-                        if (cell.innerHTML == '1') cell.classList.add('root');
-                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                        if ('_1_do_'.indexOf(cell.innerHTML) > -1) cell.classList.add('root');
+                        if ('_3_5_mi_sol_'.indexOf(cell.innerHTML) > -1) cell.classList.add('chord-tone');
                     }
 
                     cell = document.getElementById(`draw-bend-3-hole-${i}`);
@@ -292,8 +317,8 @@
                         cell.classList.remove('root');
                         cell.classList.remove('chord-tone');
                         cell.innerHTML = draw_bend_3.replace('b', '&flat;') || '&nbsp;';
-                        if (cell.innerHTML == '1') cell.classList.add('root');
-                        if (cell.innerHTML == '3' || cell.innerHTML == '5') cell.classList.add('chord-tone');
+                        if ('_1_do_'.indexOf(cell.innerHTML) > -1) cell.classList.add('root');
+                        if ('_3_5_mi_sol_'.indexOf(cell.innerHTML) > -1) cell.classList.add('chord-tone');
                     }
                 }
             }
@@ -319,13 +344,22 @@
 
                 if (params.length > 1) {
                     if (params[0].toLowerCase() == 'position') {
+
+                        let use_solfege = false;
+                        if (params.length > 2) {
+                            if (params[2].toLowerCase() === 'solfege') {
+                                use_solfege = true;
+                            }
+                        }
+
                         try {
-                            loadPosition(Number(params[1]));
+                            loadPosition(Number(params[1]), use_solfege);
                         } catch {
-                            loadPosition(1);
+                            loadPosition(1, use_solfege);
                         }
                     }
                 }
+
             }
 
         }
